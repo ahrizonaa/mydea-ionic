@@ -1,0 +1,38 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title id="displayname">
+      <ion-avatar style="width: 10rem; height: 10rem" slot="">
+        <ion-img #profileImg [src]="pfp"></ion-img>
+        <ion-button
+          fill="clear"
+          (click)="takePicture()"
+          class="tap-to-edit-btn">
+          <ion-text>Edit</ion-text>
+        </ion-button>
+      </ion-avatar>
+      <ion-text class="ion-padding-top">{{ auth.user.displayname }}</ion-text>
+    </ion-card-title>
+  </ion-card-header>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Background</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="bg-grid-container">
+      <div
+        class="bg-img"
+        *ngFor="let bgidx of bgs"
+        [style.backgroundImage]="formatBgImgCss(bgidx)"
+        (click)="setBackgroundImage(bgidx)"></div>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Display</ion-card-title>
+  </ion-card-header>
+  <ion-card-content> </ion-card-content>
+</ion-card>

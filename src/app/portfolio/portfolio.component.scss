@@ -1,0 +1,193 @@
+.originator-label {
+    position: fixed;
+    top: -13px;
+    left: -13px;
+}
+
+.app-divisor {
+    height: 1px;
+    background-color: rgba(85, 85, 85, 0.5);
+    border: none;
+    border-radius: 1px;
+    margin: 0 2px 0 2px;
+}
+
+.app-tile-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-bottom: 1rem;
+    background-color: #4e949d14;
+    background-color: #c8e6ff6c;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    padding: 7px;
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden !important;
+}
+
+.app-tile-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.app-tile {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 17px;
+    background-image: url("../../assets/images/heart_blueprint3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+ion-button.app-tile::part(native) {
+    overflow: visible;
+}
+
+.app-delete-icon {
+    position: absolute;
+    top: -0.5em;
+    left: -1.4em;
+}
+
+.app-label {
+    font-size: 10px;
+    font-weight: 400;
+    max-width: 80px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@media (hover: hover) {
+    .app-tile:hover {
+        background-color: rgba(95, 158, 160, 0.5);
+    }
+}
+
+.list-header {
+    display: flex;
+}
+
+.timeline-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 
+animation: name duration timing-function delay iteration-count direction fill-mode;
+*/
+
+.startup-takeoff {
+    animation: startup-takeoff 1s ease-in-out forwards;
+}
+
+@keyframes startup-takeoff {
+    10% {
+        transform: translateX(-10px);
+    }
+    20% {
+        transform: translateX(-10px);
+    }
+    100% {
+        transform: translateX(1000px);
+        position: fixed;
+        display: none;
+    }
+}
+
+.newapp-button-wrapper {}
+
+.form-slideshow {
+    width: 90vw;
+    height: 45vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide-onscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide-offscreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(100%);
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.newapp-addfeature-textarea {
+    position: relative;
+}
+
+.newapp-addfeature-btn {
+    position: absolute;
+    right: 5px;
+    margin: auto;
+    bottom: 7px;
+    z-index: 3;
+    font-size: 5px !important;
+    width: fit-content;
+    height: fit-content !important;
+    opacity: 0.75;
+    padding: 5px !important;
+}
+
+.newfeature-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    overflow-x: hidden;
+}
+
+.progress-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+.progress-spinner {
+    width: 150px !important;
+    height: 150px !important;
+}
+
+.ion-delete-app-icon {
+    background: #ababab;
+    border: none;
+    border-radius: 50%;
+    color: black;
+}

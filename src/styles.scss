@@ -1,0 +1,103 @@
+@import url(./assets/styles/animista.css);
+@import url(./assets/styles/cssanimation.io.scss);
+@import url(./assets/styles/animatopy.scss);
+@import url(./assets/styles/charmee-logo-animation.css);
+
+@import "~swiper/scss";
+@import "~swiper/scss/autoplay";
+@import "~swiper/scss/keyboard";
+@import "~swiper/scss/pagination";
+@import "~swiper/scss/scrollbar";
+@import "~swiper/scss/zoom";
+@import "~@ionic/angular/css/ionic-swiper";
+
+ion-content::part(background) {
+  background: transparent !important;
+}
+app-splashscreen ion-content::part(scroll) {
+  padding-top: 0;
+}
+
+ion-card ion-label {
+  white-space: normal !important;
+}
+
+:root {
+  --ion-color-pretty-princess-pink: #ffb1cf;
+  --ion-color-pretty-princess-pink-rgb: 255, 177, 207;
+  --ion-color-pretty-princess-pink-contrast: #000000;
+  --ion-color-pretty-princess-pink-contrast-rgb: 0, 0, 0;
+  --ion-color-pretty-princess-pink-shade: #e09cb6;
+  --ion-color-pretty-princess-pink-tint: #ffb9d4;
+}
+
+.ion-color-pretty-princess-pink {
+  --ion-color-base: var(--ion-color-pretty-princess-pink);
+  --ion-color-base-rgb: var(--ion-color-pretty-princess-pink-rgb);
+  --ion-color-contrast: var(--ion-color-pretty-princess-pink-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-pretty-princess-pink-contrast-rgb);
+  --ion-color-shade: var(--ion-color-pretty-princess-pink-shade);
+  --ion-color-tint: var(--ion-color-pretty-princess-pink-tint);
+}
+
+.newappinput > input {
+  width: auto !important;
+}
+
+.timeline-content > h3 {
+  font-size: 22px !important;
+}
+
+div.swiper-slide[data-swiper-slide-index="2"] > div.slide-content {
+  justify-content: center !important;
+}
+
+div.swiper-slide[data-swiper-slide-index="0"] ion-item {
+  font-size: 14px !important;
+}
+
+div.login-content ion-card {
+  min-height: 200px !important;
+}
+
+app-logo {
+  display: flex;
+  justify-content: center;
+  & svg {
+    display: block;
+    // width: 150px !important;
+    // height: 40px !important;
+  }
+}
+
+app-login ion-card ion-card-content {
+  min-height: 8em;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+ion-tabs {
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+app-treasury .swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+app-treasury .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px !important;
+  // height: 300px !important;
+}
+
+app-treasury .swiper-slide ion-card {
+  display: block;
+  width: 100%;
+}

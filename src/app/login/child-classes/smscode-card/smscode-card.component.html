@@ -1,0 +1,18 @@
+<ion-card>
+  <ion-card-header translucent="true">
+    <ion-card-title>Verify Code</ion-card-title>
+  </ion-card-header>
+  <ion-card-content style="text-align: center">
+    <div class="code-input">
+      <ion-input [(ngModel)]="auth.code" (ionChange)="auth.codechanged($event)"
+        style="--padding-end: 0; border: 1px solid #ddd; border-radius: 5px" inputmode="text"
+        autocomplete="one-time-code" type="text" maxlength="6" minlength="6" required="true"></ion-input>
+    </div>
+    <ion-progress-bar class="progress-bar" [style.opacity]="auth.codeprogress.opacity" [color]="auth.codeprogress.color"
+      [value]="auth.codeprogress.value"></ion-progress-bar>
+    <ion-item lines="none">
+      <ion-button slot="start" fill="clear" size="small" (click)="back()">Back
+      </ion-button>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
