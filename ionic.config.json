@@ -1,0 +1,7 @@
+{
+  "name": "mydea",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
