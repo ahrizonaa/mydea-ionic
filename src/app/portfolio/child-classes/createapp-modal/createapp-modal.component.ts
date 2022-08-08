@@ -10,15 +10,13 @@ import { IonTitle } from '@ionic/angular';
   styleUrls: ['./createapp-modal.component.scss'],
 })
 export class CreateappModalComponent implements OnInit {
-  constructor(public apps: AppAssistant) {}
-
-  slides: string[] = ['App Name', 'Timeline', 'All done'];
-  animate: boolean = false;
-
   @ViewChild('swiper', { static: false }) swiper: SwiperComponent;
   @ViewChild('title', { read: ElementRef }) title: ElementRef;
+  slides: string[] = ['App Name', 'Timeline', 'All done'];
+  animate = false;
+  bgImage = '';
 
-  bgImage: string = '';
+  constructor(public apps: AppAssistant) {}
 
   ngOnInit(): void {
     this.bgImage = `url(../../../../assets/images/bg-${Math.floor(
@@ -26,7 +24,7 @@ export class CreateappModalComponent implements OnInit {
     )}.jpg)`;
 
     setInterval(() => {
-      let idx = Math.floor(Math.random() * 35);
+      const idx = Math.floor(Math.random() * 35);
       this.bgImage = `url(../../../../assets/images/bg-${idx}.jpg)`;
     }, 5000);
   }

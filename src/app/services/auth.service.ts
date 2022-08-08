@@ -190,6 +190,6 @@ export class AuthService {
 
   tohome() {
     this.apps.refresh();
-    this.router.navigate(['home/portfolio']);
+    this.router.navigate(['portfolio']);
   }
 }
