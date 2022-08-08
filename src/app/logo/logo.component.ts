@@ -4,11 +4,11 @@ import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
   selector: 'app-logo',
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.scss'],
+  standalone: true,
 })
 export class LogoComponent implements OnInit, AfterViewInit {
+  @Input() width: string;
   constructor() {}
-
-  @Input('width') width: string;
 
   ngOnInit(): void {}
 

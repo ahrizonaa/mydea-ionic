@@ -1,34 +1,41 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+import SwiperCore, {
+  Autoplay,
+  Keyboard,
+  Pagination,
+  Scrollbar,
+  Zoom,
+  EffectCoverflow,
+} from 'swiper';
+
+SwiperCore.use([
+  Autoplay,
+  Keyboard,
+  Pagination,
+  Scrollbar,
+  Zoom,
+  EffectCoverflow,
+]);
+
 @Component({
   selector: 'app-treasury',
   templateUrl: './treasury.component.html',
   styleUrls: ['./treasury.component.scss'],
 })
 export class TreasuryComponent implements OnInit {
-  constructor(private http: HttpClient) {}
-
-  accessKey: string = 'guFi2sERZWAns62fdRbA_WAGW_RTGlmntE2eQ4sv75w';
-
-  ngOnInit(): void {
-    let requestOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Client-ID guFi2sERZWAns62fdRbA_WAGW_RTGlmntE2eQ4sv75w',
-      }),
-    };
-    // this.cards.forEach(async (card) => {
-    //   this.http
-    //     .get(
-    //       `https://api.unsplash.com/photos/random/?query=${card.name}&client_id=${this.accessKey}`,
-    //       requestOptions
-    //     )
-    //     .subscribe((result: any) => {
-    //       card.link = result.urls.small;
-    //     });
-    // });
-  }
-
+  accessKey = 'guFi2sERZWAns62fdRbA_WAGW_RTGlmntE2eQ4sv75w';
+  // this.cards.forEach(async (card) => {
+  //   this.http
+  //     .get(
+  //       `https://api.unsplash.com/photos/random/?query=${card.name}&client_id=${this.accessKey}`,
+  //       requestOptions
+  //     )
+  //     .subscribe((result: any) => {
+  //       card.link = result.urls.small;
+  //     });
+  // });
   cards: any[] = [
     {
       name: 'Microsoft Office',
@@ -125,6 +132,16 @@ export class TreasuryComponent implements OnInit {
       invite: true,
     },
   ];
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    let requestOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Client-ID guFi2sERZWAns62fdRbA_WAGW_RTGlmntE2eQ4sv75w',
+      }),
+    };
+  }
 
   slideChanged(event: any) {}
 }

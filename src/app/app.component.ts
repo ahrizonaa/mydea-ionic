@@ -3,24 +3,6 @@ import { GlobalsService } from './services/globals.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
-import SwiperCore, {
-  Autoplay,
-  Keyboard,
-  Pagination,
-  Scrollbar,
-  Zoom,
-  EffectCoverflow,
-} from 'swiper';
-
-SwiperCore.use([
-  Autoplay,
-  Keyboard,
-  Pagination,
-  Scrollbar,
-  Zoom,
-  EffectCoverflow,
-]);
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -39,7 +21,7 @@ export class AppComponent implements OnInit {
     this.auth.initUser();
   }
 
-  _reload: boolean = false;
+  _reload = false;
 
   reload() {
     setTimeout(() => (this._reload = false), 10);

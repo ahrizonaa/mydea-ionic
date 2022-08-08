@@ -8,7 +8,7 @@ export class NewFeature {
   ) => void = function (this, listener, res) {
     if (res.modifiedCount == 1) {
       (async () => {
-        let toastr = await this.toast.create({
+        const toastr = await this.toast.create({
           message: 'Feature added.  Keep it up :)',
           duration: 2000,
         });
