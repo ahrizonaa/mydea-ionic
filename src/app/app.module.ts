@@ -27,6 +27,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { FabContentsComponent } from './portfolio/child-classes/fab-contents/fab-contents.component';
 import { CreateappModalComponent } from './portfolio/child-classes/createapp-modal/createapp-modal.component';
 import { AppDetailModalComponent } from './portfolio/child-classes/app-detail-modal/app-detail-modal.component';
+import { TabsPage } from './tabs/tabs.page';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AppDetailModalComponent } from './portfolio/child-classes/app-detail-mo
     DeleteModalComponent,
     CreateappModalComponent,
     AppDetailModalComponent,
+    TabsPage,
   ],
   imports: [
     BrowserModule,
