@@ -1,4 +1,4 @@
-<ion-tabs id="background" [style.backgroundImage]="backgroundImage" #ionTabs>
+<ion-tabs id="background" class="ion-tabs-background" [style.backgroundImage]="backgroundImage" #ionTabs>
   <ion-header translucent="true">
     <ion-toolbar>
       <ion-title>
@@ -15,8 +15,8 @@
     </ion-tab-button>
 
     <ion-tab-button tab="treasury">
-      <i class="fas fa-treasure-chest"></i>
-      <ion-label>Treasury</ion-label>
+      <fa-icon size="3x" [icon]="faTreasureChest"></fa-icon>
+      <ion-label style="margin-bottom: -4px">Treasury</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="settings">

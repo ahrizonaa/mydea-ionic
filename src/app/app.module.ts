@@ -28,6 +28,7 @@ import { FabContentsComponent } from './portfolio/child-classes/fab-contents/fab
 import { CreateappModalComponent } from './portfolio/child-classes/createapp-modal/createapp-modal.component';
 import { AppDetailModalComponent } from './portfolio/child-classes/app-detail-modal/app-detail-modal.component';
 import { TabsPage } from './tabs/tabs.page';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { TabsPage } from './tabs/tabs.page';
     IonicModule.forRoot({
       rippleEffect: true,
     }),
+    FontAwesomeModule,
   ],
   exports: [IonicModule],
   providers: [

@@ -9,6 +9,8 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  isReloading = false;
+
   constructor(
     public globals: GlobalsService,
     private auth: AuthService,
@@ -21,10 +23,8 @@ export class AppComponent implements OnInit {
     this.auth.initUser();
   }
 
-  _reload = false;
-
   reload() {
-    setTimeout(() => (this._reload = false), 10);
-    setTimeout(() => (this._reload = true), 20);
+    setTimeout(() => (this.isReloading = false), 10);
+    setTimeout(() => (this.isReloading = true), 20);
   }
 }

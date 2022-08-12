@@ -23,6 +23,13 @@ import { UserData } from '../login/child-classes/User';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
+  @ViewChild('profileImg') profileImg: ElementRef<HTMLImageElement>;
+
+  //bgs: number[][] = _.chunk(Array.from(new Array(16).keys()), 3);
+  bgs: number[] = Array.from(new Array(16).keys());
+  bgImage = 'url(../../assets/images/bg-1.jpg)';
+  pfp = 'url(../../assets/svg/avatar.svg)';
+
   constructor(
     public auth: AuthService,
     public globals: GlobalsService,
@@ -32,16 +39,9 @@ export class SettingsComponent implements OnInit {
   ) {
     this.pfp = 'url(../../assets/svg/avatar.svg)';
   }
-  @ViewChild('profileImg') profileImg: ElementRef<HTMLImageElement>;
-
-  //bgs: number[][] = _.chunk(Array.from(new Array(16).keys()), 3);
-  bgs: number[] = Array.from(new Array(16).keys());
-  bgImage: string = 'url(../../assets/images/bg-1.jpg)';
-  pfp: string = 'url(../../assets/svg/avatar.svg)';
-
   ngOnInit(): void {
     this.d.user$.subscribe((user: UserData) => {
-      if (user.settings != undefined && user.settings.pfp) {
+      if (user.settings !== undefined && user.settings.pfp) {
         this.pfp = user.settings.pfp;
       }
     });
@@ -60,7 +60,7 @@ export class SettingsComponent implements OnInit {
   }
 
   formatBgImgCss(i: number) {
-    let str = `url('../../assets/images/backgrounds/bg-${i + 1}.jpg')`;
+    const str = `url('../../assets/images/backgrounds/bg-${i + 1}.jpg')`;
     return str;
   }
 
