@@ -17,6 +17,7 @@ import * as _ from 'lodash';
 import { GlobalsService } from '../services/globals.service';
 import { Photo } from '@capacitor/camera';
 import { UserData } from '../login/child-classes/User';
+import { faSquareThisWayUp } from '@fortawesome/pro-solid-svg-icons';
 
 @Component({
   selector: 'app-settings',
@@ -30,7 +31,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   bgs: number[] = Array.from(new Array(16).keys());
   bgImage = 'url(../../assets/images/bg-1.jpg)';
   pfp = 'url(../../assets/svg/avatar.svg)';
-  displayName: any;
+  profileImgEdit: HTMLElement;
 
   constructor(
     public auth: AuthService,
@@ -41,19 +42,10 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     private html: Renderer2
   ) {
     this.pfp = 'url(../../assets/svg/avatar.svg)';
-    this.displayName = html.createElement('ion-text');
-    this.displayName.innerHTML = 'Edit';
-    this.displayName.style.position = 'absolute';
-    this.displayName.style.bottom = '5px';
-    this.displayName.style.textAlign = 'center';
-    this.displayName.style.width = '100%';
-    this.displayName.style.color = 'rgb(66, 140, 255)';
-    this.displayName.style.fontSize = '1rem';
-    this.displayName.style.fontWeight = 'normal';
+    this.renderProfileImgEditBtn();
   }
   ngAfterViewInit(): void {
-    console.log(this.profileImg);
-    this.profileImg.el.shadowRoot.appendChild(this.displayName);
+    this.profileImg.el.shadowRoot.appendChild(this.profileImgEdit);
   }
   ngOnInit(): void {
     this.d.user$.subscribe((user: UserData) => {
@@ -96,5 +88,17 @@ export class SettingsComponent implements OnInit, AfterViewInit {
         settings: { pfp: image.dataUrl },
       })
       .subscribe();
+  }
+
+  renderProfileImgEditBtn() {
+    this.profileImgEdit = this.html.createElement('ion-text');
+    this.profileImgEdit.innerHTML = 'Edit';
+    this.profileImgEdit.style.position = 'absolute';
+    this.profileImgEdit.style.bottom = '5px';
+    this.profileImgEdit.style.textAlign = 'center';
+    this.profileImgEdit.style.width = '100%';
+    this.profileImgEdit.style.color = 'rgb(66, 140, 255)';
+    this.profileImgEdit.style.fontSize = '1rem';
+    this.profileImgEdit.style.fontWeight = 'normal';
   }
 }
