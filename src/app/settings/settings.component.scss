@@ -1,18 +1,9 @@
-// ion-avatar > img {
-//   object-position: center;
-//   width: 10rem;
-//   height: 10rem;
-// }
-
-// ion-card-title {
-//   text-align: left;
-// }
-
-// ion-card-title#displayname {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// }
+ion-card-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .tap-to-edit-btn {
   position: absolute;
@@ -35,20 +26,13 @@ ion-img {
 //   }
 // }
 
-// .bg-grid-container {
-//   display: flex;
-//   width: 100%;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   max-height: 250px;
-//   overflow-y: auto;
-//   border-radius: 5px;
-//   border: 1px solid #ccc;
-// }
-// .bg-img {
-//   width: 24.5%;
-//   aspect-ratio: 1 / 2;
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-// }
+.bg-grid-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
