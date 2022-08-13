@@ -28,7 +28,11 @@ import { FabContentsComponent } from './portfolio/child-classes/fab-contents/fab
 import { CreateappModalComponent } from './portfolio/child-classes/createapp-modal/createapp-modal.component';
 import { AppDetailModalComponent } from './portfolio/child-classes/app-detail-modal/app-detail-modal.component';
 import { TabsPage } from './tabs/tabs.page';
+import { FeaturelistComponent } from './portfolio/child-classes/featurelist/featurelist.component';
+import { ToggleLink } from './portfolio/child-classes/togglelink';
+import { TimelineComponent } from './portfolio/child-classes/timeline/timeline.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CreateappModalComponent,
     AppDetailModalComponent,
     TabsPage,
+    FeaturelistComponent,
+    ToggleLink,
+    TimelineComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +64,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     HttpClientModule,
     LogoComponent,
+    SwiperModule,
     IonicModule.forRoot({
       rippleEffect: true,
     }),
