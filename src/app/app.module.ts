@@ -31,7 +31,6 @@ import { TabsPage } from './tabs/tabs.page';
 import { FeaturelistComponent } from './portfolio/child-classes/featurelist/featurelist.component';
 import { ToggleLink } from './portfolio/child-classes/togglelink';
 import { TimelineComponent } from './portfolio/child-classes/timeline/timeline.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
 import { PosterSliderComponent } from './components/poster-slider/poster-slider.component';
 
@@ -70,7 +69,6 @@ import { PosterSliderComponent } from './components/poster-slider/poster-slider.
     IonicModule.forRoot({
       rippleEffect: true,
     }),
-    FontAwesomeModule,
   ],
   exports: [IonicModule],
   providers: [
