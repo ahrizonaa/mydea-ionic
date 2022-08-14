@@ -3,17 +3,14 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { IonTabs } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { faTreasureChest } from '@fortawesome/pro-solid-svg-icons';
-
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class TabsPage implements OnInit, AfterViewInit {
   @ViewChild('ionTabs') ionTabs: IonTabs;
-  faTreasureChest = faTreasureChest;
 
   tabsactive: boolean[] = [true, false, false];
   backgroundImage = 'url(../assets/images/backgrounds/bg-0.jpg';
