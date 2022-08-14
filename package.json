@@ -54,6 +54,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.29.0",
     "@typescript-eslint/parser": "5.29.0",
+    "@vercel/node": "^2.5.8",
     "concurrently": "^7.3.0",
     "eslint": "^8.18.0",
     "jasmine-core": "~3.8.0",
