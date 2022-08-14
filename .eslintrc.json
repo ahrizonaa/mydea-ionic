@@ -5,19 +5,20 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["./mydea-ionic/tsconfig.json", "e2e/tsconfig.json"],
+        "project": ["mydea-ionic/tsconfig.json", "e2e/tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
+        "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "@angular-eslint/component-class-suffix": [
+        "@angular-eslint/directive-selector": [
           "error",
           {
-            "suffixes": ["Page", "Component"]
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
           }
         ],
         "@angular-eslint/component-selector": [
@@ -27,16 +28,7 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ],
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
-        ],
-        "no-console": "off"
+        ]
       }
     },
     {

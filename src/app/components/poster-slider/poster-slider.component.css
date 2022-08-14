@@ -1,0 +1,7 @@
+.swiper-slide {
+  width: 150px !important;
+  height: 300px !important;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

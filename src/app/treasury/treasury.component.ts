@@ -8,6 +8,8 @@ import SwiperCore, {
   Scrollbar,
   Zoom,
   EffectCoverflow,
+  Parallax,
+  EffectCreative,
 } from 'swiper';
 
 SwiperCore.use([
@@ -17,6 +19,8 @@ SwiperCore.use([
   Scrollbar,
   Zoom,
   EffectCoverflow,
+  Parallax,
+  EffectCreative,
 ]);
 
 @Component({

@@ -67,7 +67,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     );
   }
 
-  formatBgImgCss(i: number) {
+  formatBgImgCss(i: number): string {
     const str = `url('../../assets/images/backgrounds/bg-${i + 1}.jpg')`;
     return str;
   }

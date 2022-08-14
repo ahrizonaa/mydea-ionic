@@ -1,0 +1,8 @@
+<swiper #swiper [effect]="'creative'" [grabCursor]="true" [creativeEffect]="creativeEffect" [speed]="600"
+  [resistanceRatio]="0" [parallax]="true">
+  <ng-template swiperSlide *ngFor="let bgIdx of cards">
+    <div [style.backgroundImage]="formatBgImgCss(bgIdx)" class="swiper-slide">
+
+    </div>
+  </ng-template>
+</swiper>

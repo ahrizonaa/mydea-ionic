@@ -33,6 +33,7 @@ import { ToggleLink } from './portfolio/child-classes/togglelink';
 import { TimelineComponent } from './portfolio/child-classes/timeline/timeline.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SwiperModule } from 'swiper/angular';
+import { PosterSliderComponent } from './components/poster-slider/poster-slider.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { SwiperModule } from 'swiper/angular';
     FeaturelistComponent,
     ToggleLink,
     TimelineComponent,
+    PosterSliderComponent,
   ],
   imports: [
     BrowserModule,
