@@ -17,7 +17,6 @@ import * as _ from 'lodash';
 import { GlobalsService } from '../services/globals.service';
 import { Photo } from '@capacitor/camera';
 import { UserData } from '../login/child-classes/User';
-import { faSquareThisWayUp } from '@fortawesome/pro-solid-svg-icons';
 
 @Component({
   selector: 'app-settings',
