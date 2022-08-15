@@ -1,4 +1,4 @@
-import { AppAssistant } from './../AppAssistant';
+import { AppAssistant } from '../../../services/AppAssistant';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { App } from '../App';

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AppAssistant } from './../AppAssistant';
+import { AppAssistant } from '../../../services/AppAssistant';
 export class InitiateStartup {
   static success: (this: AppAssistant, res: any) => void = function (
     this,

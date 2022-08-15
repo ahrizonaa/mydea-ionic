@@ -1,4 +1,4 @@
-import { AppAssistant } from './../AppAssistant';
+import { AppAssistant } from '../../../services/AppAssistant';
 import { BehaviorSubject } from 'rxjs';
 
 export class DeleteFeature {

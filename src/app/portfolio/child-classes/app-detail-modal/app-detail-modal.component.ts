@@ -1,4 +1,4 @@
-import { AppAssistant } from './../AppAssistant';
+import { AppAssistant } from '../../../services/AppAssistant';
 import { Component, OnInit } from '@angular/core';
 
 import SwiperCore, {
@@ -24,12 +24,10 @@ SwiperCore.use([
   templateUrl: './app-detail-modal.component.html',
   styleUrls: ['./app-detail-modal.component.scss'],
 })
-export class AppDetailModalComponent implements OnInit {
+export class AppDetailModalComponent {
   slideOpts = {
     initialSlide: 1,
     speed: 400,
   };
   constructor(public apps: AppAssistant) {}
-
-  ngOnInit(): void {}
 }

@@ -1,4 +1,4 @@
-import { AppAssistant } from './../AppAssistant';
+import { AppAssistant } from '../../../services/AppAssistant';
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { App } from '../App';
 
@@ -10,8 +10,8 @@ import { App } from '../App';
 export class TimelineComponent implements OnInit {
   constructor(public apps: AppAssistant) {}
 
-  @Input('static') static: boolean = false;
-  @Input('animate') animate: boolean = false;
+  @Input() static: boolean = false;
+  @Input() animate: boolean = false;
 
   app: App = new App();
 

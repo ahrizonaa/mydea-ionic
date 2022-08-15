@@ -56,7 +56,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 
   setBackgroundImage(idx: number) {
     this.api
-      .post('settings/save', {
+      .post('/api/settings/save', {
         user: this.auth.user,
         settings: { bgindex: idx + 1 },
       })

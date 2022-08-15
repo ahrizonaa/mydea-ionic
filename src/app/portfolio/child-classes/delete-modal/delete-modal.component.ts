@@ -1,4 +1,4 @@
-import { AppAssistant } from './../AppAssistant';
+import { AppAssistant } from '../../../services/AppAssistant';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './delete-modal.component.html',
   styleUrls: ['./delete-modal.component.scss'],
 })
-export class DeleteModalComponent implements OnInit {
+export class DeleteModalComponent {
   constructor(public apps: AppAssistant) {}
-
-  ngOnInit(): void {}
 }

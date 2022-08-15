@@ -10,7 +10,7 @@ import {
 
 import * as _ from 'lodash';
 import { ToastController } from '@ionic/angular';
-import { AppAssistant } from './child-classes/AppAssistant';
+import { AppAssistant } from '../services/AppAssistant';
 
 import SwiperCore, {
   Autoplay,
@@ -36,7 +36,7 @@ SwiperCore.use([
   styleUrls: ['./portfolio.component.scss'],
   animations: [],
 })
-export class PortfolioComponent implements OnInit, AfterViewInit {
+export class PortfolioComponent implements AfterViewInit {
   @ViewChild('refresher', { read: ElementRef }) refresher: ElementRef;
 
   fab: HTMLIonFabElement;
@@ -48,7 +48,6 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     public apps: AppAssistant
   ) {}
 
-  ngOnInit(): void {}
   ngAfterViewInit(): void {
     this.fab = document.getElementById('fab') as HTMLIonFabElement;
     this.apps.setRefresherViewChild(this.refresher);

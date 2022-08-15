@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { AppAssistant } from './../AppAssistant';
+import { AppAssistant } from '../../../services/AppAssistant';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

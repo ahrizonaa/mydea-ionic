@@ -4,10 +4,10 @@ import { db } from '../lib/_db';
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   try {
-    let query = { _id: new ObjectId(req.body._id) };
-    let update = { $set: { initiated: true } };
+    let result = await db
+      .collection('Users')
+      .findOne({ _id: new ObjectId(req.body._id) });
 
-    let result = await db.collection('Apps').updateOne(query, update);
     res.status(200).send(result);
   } catch (exception) {
     res.status(500).send(exception);

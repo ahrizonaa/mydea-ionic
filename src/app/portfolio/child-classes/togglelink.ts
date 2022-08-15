@@ -1,4 +1,4 @@
-import { AppAssistant } from './AppAssistant';
+import { AppAssistant } from '../../services/AppAssistant';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -12,8 +12,7 @@ import { Component, Input } from '@angular/core';
       "
       (click)="clicked()"
       fill="clear"
-      size="small"
-    >
+      size="small">
       <span>{{
         verb == 'add'
           ? apps.features.adding

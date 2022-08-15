@@ -1,4 +1,4 @@
-import { AppAssistant } from './../portfolio/child-classes/AppAssistant';
+import { AppAssistant } from './AppAssistant';
 import { DispatcherService } from './dispatcher.service';
 import { firstValueFrom, Observable } from 'rxjs';
 import { ApiService } from './api.service';
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { LibService } from './lib.service';
 import { ToastController } from '@ionic/angular';
 import { GlobalsService } from './globals.service';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User, UserData } from '../login/child-classes/User';
 import { Steps } from '../login/child-classes/LoginSteps';
 import { Coder } from '../login/child-classes/Coder';
@@ -44,7 +44,7 @@ export class AuthService {
     } else {
       const u = JSON.parse(usr) as User;
       const userdata: UserData = await firstValueFrom(
-        this.api.post('auth/user', u)
+        this.api.post('/user/fetch', u)
       );
       this.setUser(userdata);
       if (
@@ -77,13 +77,13 @@ export class AuthService {
   }
 
   fetchUser(u: User): Observable<any> {
-    return this.api.post('auth/user', u);
+    return this.api.post('/user/fetch', u);
   }
 
   requestcode(): void {
     this.loginstep = Steps.VERIFY_CODE;
     this.api
-      .post('auth/requestcode', {
+      .post('/twilio/coderequest', {
         tel: this.user.tel,
       })
       .subscribe((res: any) => {
@@ -109,7 +109,7 @@ export class AuthService {
             if (this.msg.code == this.code) {
               this.user.validatedon = this.lib.moment();
               this.api
-                .post('auth/validated', {
+                .post('/user/validate', {
                   _id: this.user._id,
                   validatedon: this.user.validatedon,
                 })
@@ -151,7 +151,7 @@ export class AuthService {
 
   accountexists(): void {
     this.api
-      .post('auth/exists', {
+      .post('/user/exists', {
         tel: this.user.tel,
       })
       .subscribe(async (res: any) => {
@@ -178,7 +178,7 @@ export class AuthService {
       displayname: this.user.displayname,
       validatedon: this.lib.moment(),
     });
-    this.api.post('auth/createaccount', usr).subscribe((res) => {
+    this.api.post('/user/create', usr).subscribe((res) => {
       if (res.acknowledged == true) {
         usr._id = res.insertedId;
         this.setUser(usr);

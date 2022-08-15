@@ -5,10 +5,11 @@ import { db } from '../lib/_db';
 export default async function (req: VercelRequest, res: VercelResponse) {
   try {
     let query = { _id: new ObjectId(req.body._id) };
-    let update = { $set: { initiated: true } };
+    let deletedCount = (await db.collection('Apps').deleteOne(query))
+      .deletedCount;
 
-    let result = await db.collection('Apps').updateOne(query, update);
-    res.status(200).send(result);
+    let apps = await db.collection('Apps').find({}).toArray();
+    res.status(200).send({ deletedCount, apps });
   } catch (exception) {
     res.status(500).send(exception);
   }

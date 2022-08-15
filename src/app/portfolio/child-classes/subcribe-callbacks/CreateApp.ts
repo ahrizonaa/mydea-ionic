@@ -1,5 +1,5 @@
 import { App } from '../App';
-import { AppAssistant } from './../AppAssistant';
+import { AppAssistant } from '../../../services/AppAssistant';
 export class CreateApp {
   static success: (
     this: AppAssistant,

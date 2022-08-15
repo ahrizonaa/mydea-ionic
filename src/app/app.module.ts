@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 
 import { ErrorComponent } from './error/error.component';
 import { IonicModule, IonicRouteStrategy, IonTabs } from '@ionic/angular';
-import { AppAssistant } from './portfolio/child-classes/AppAssistant';
+import { AppAssistant } from './services/AppAssistant';
 import { LoginComponent } from './login/login.component';
 import { TelCardComponent } from './login/child-classes/tel-card/tel-card.component';
 import { DisplaynameCardComponent } from './login/child-classes/displayname-card/displayname-card.component';
