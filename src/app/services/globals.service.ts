@@ -31,5 +31,5 @@ export class GlobalsService {
 
   iframe: boolean;
 
-  readonly api = `${window.location.origin}/api`;
+  readonly api = ` https://mydea.vercel.app/api`;
 }

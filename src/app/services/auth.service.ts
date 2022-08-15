@@ -30,8 +30,7 @@ export class AuthService {
     public lib: LibService,
     private router: Router,
     private api: ApiService,
-    private d: DispatcherService,
-    private apps: AppAssistant
+    private d: DispatcherService
   ) {}
 
   async initUser() {
@@ -44,7 +43,7 @@ export class AuthService {
     } else {
       const u = JSON.parse(usr) as User;
       const userdata: UserData = await firstValueFrom(
-        this.api.post('/user/fetch', u)
+        this.api.post('user/fetch', u)
       );
       this.setUser(userdata);
       if (
@@ -77,7 +76,7 @@ export class AuthService {
   }
 
   fetchUser(u: User): Observable<any> {
-    return this.api.post('/user/fetch', u);
+    return this.api.post('user/fetch', u);
   }
 
   requestcode(): void {
@@ -109,13 +108,13 @@ export class AuthService {
             if (this.msg.code == this.code) {
               this.user.validatedon = this.lib.moment();
               this.api
-                .post('/user/validate', {
+                .post('user/validate', {
                   _id: this.user._id,
                   validatedon: this.user.validatedon,
                 })
                 .subscribe();
               this.codeprogress.color = 'success';
-              this.apps.refresh(false);
+              this.d.appRefresh$.next(false);
               if (this.user.displayname == '') {
                 this.loginstep = Steps.DISPLAY_NAME;
               } else {
@@ -151,7 +150,7 @@ export class AuthService {
 
   accountexists(): void {
     this.api
-      .post('/user/exists', {
+      .post('user/exists', {
         tel: this.user.tel,
       })
       .subscribe(async (res: any) => {
@@ -178,7 +177,7 @@ export class AuthService {
       displayname: this.user.displayname,
       validatedon: this.lib.moment(),
     });
-    this.api.post('/user/create', usr).subscribe((res) => {
+    this.api.post('user/create', usr).subscribe((res) => {
       if (res.acknowledged == true) {
         usr._id = res.insertedId;
         this.setUser(usr);
@@ -189,7 +188,7 @@ export class AuthService {
   }
 
   tohome() {
-    this.apps.refresh();
+    this.d.appRefresh$.next(false);
     this.router.navigate(['portfolio']);
   }
 }

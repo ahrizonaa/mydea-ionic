@@ -18,6 +18,7 @@ import {
 import { ApiService } from 'src/app/services/api.service';
 import { LibService } from 'src/app/services/lib.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { DispatcherService } from './dispatcher.service';
 
 @Injectable({ providedIn: 'any' })
 export class AppAssistant {
@@ -26,8 +27,13 @@ export class AppAssistant {
     public lib: LibService,
     private globals: GlobalsService,
     public toast: ToastController,
-    private auth: AuthService
-  ) {}
+    private auth: AuthService,
+    private d: DispatcherService
+  ) {
+    this.d.appRefresh$.subscribe((val: boolean = false) => {
+      this.refresh(val);
+    });
+  }
 
   apps: App[] = [];
   groupedApps: any = {};
@@ -49,9 +55,11 @@ export class AppAssistant {
 
   refresher: ElementRef;
 
-  async refresh(refresher: boolean = false) {
+  async refresh(useRefresher: boolean = false) {
     this.loading = true;
-    this.api.get('apps').subscribe(RefreshApps.success.bind(this, refresher));
+    this.api
+      .get('apps')
+      .subscribe(RefreshApps.success.bind(this, useRefresher));
   }
 
   add() {
@@ -88,7 +96,7 @@ export class AppAssistant {
   delete() {
     this.selectedForDelete.deleting = true;
     this.api
-      .delete('/apps/delete', {
+      .delete('apps/delete', {
         body: this.selectedForDelete,
       })
       .subscribe(DeleteApp.success.bind(this, { ...this.selectedForDelete }));
@@ -109,7 +117,7 @@ export class AppAssistant {
     this.creating = true;
     this.stagingApp.originator = this.auth.user.displayname;
     this.api
-      .post('/apps/save', { ...this.stagingApp })
+      .post('apps/save', { ...this.stagingApp })
       .subscribe(
         CreateApp.success.bind(
           this,
@@ -132,7 +140,7 @@ export class AppAssistant {
     };
     if (idx != -1) {
       this.api
-        .post('/apps/features/delete', body)
+        .post('apps/features/delete', body)
         .subscribe(DeleteFeature.success.bind(this, idx, listener));
     }
   }
@@ -154,7 +162,7 @@ export class AppAssistant {
       })();
     } else {
       this.api
-        .put('/apps/features/save', {
+        .put('apps/features/save', {
           _id: this.selected._id,
           feature: this.stagingFeature,
         })
@@ -164,7 +172,7 @@ export class AppAssistant {
 
   initiateStartupClicked(): void {
     this.api
-      .post('/apps/initiate', {
+      .post('apps/initiate', {
         _id: this.selected._id,
       })
       .subscribe(
@@ -175,7 +183,7 @@ export class AppAssistant {
 
   setInProgress(event: any, idx: number) {
     this.api
-      .post('/apps/timeline/initiate', {
+      .post('apps/timeline/initiate', {
         app: this.selected,
         eventindex: idx,
         event: event,
@@ -188,7 +196,7 @@ export class AppAssistant {
   }
   setIsDone(event: any, idx: number) {
     this.api
-      .post('/apps/timeline/complete', {
+      .post('apps/timeline/complete', {
         app: this.selected,
         eventindex: idx,
         event: event,
