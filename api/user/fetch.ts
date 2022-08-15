@@ -1,8 +1,9 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { ObjectId } from 'mongodb';
-import { db } from '../lib/_db';
+import { db } from 'api/lib/_db';
+import { cors } from 'api/lib/_cors';
 
-export default async function (req: VercelRequest, res: VercelResponse) {
+export default cors(async function (req: VercelRequest, res: VercelResponse) {
   try {
     let result = await db
       .collection('Users')
@@ -12,4 +13,4 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   } catch (exception) {
     res.status(500).send(exception);
   }
-}
+});
