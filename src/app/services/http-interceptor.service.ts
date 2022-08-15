@@ -25,7 +25,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (
-      req.url.indexOf(this.globals.webapi) != -1 &&
+      req.url.indexOf(this.globals.api) != -1 &&
       req.url.indexOf('auth') == -1
     ) {
       //let usr = localStorage.getItem('user');

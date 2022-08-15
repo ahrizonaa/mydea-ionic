@@ -31,14 +31,5 @@ export class GlobalsService {
 
   iframe: boolean;
 
-  readonly envs: any = {
-    dev: 'http://localhost:8080',
-    prod: 'https://mydea-api.vercel.app',
-  };
-
-  readonly env =
-    window.location.hostname.toLowerCase().indexOf('localhost') != -1
-      ? 'dev'
-      : 'prod';
-  readonly webapi = this.envs[this.env];
+  readonly api = `${window.location.origin}/api`;
 }

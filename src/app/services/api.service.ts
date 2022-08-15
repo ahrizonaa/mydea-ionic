@@ -18,23 +18,18 @@ export class ApiService {
   httpBackend: HttpClient;
 
   get(path: string): Observable<any> {
-    // if (path.slice(0, 4) == 'auth') {
-    //   return this.httpBackend.get(`${this.g.webapi}/${path}`);
-    // }
-    return this.http.get(`${this.g.webapi}/${path}`);
+    return this.http.get(`${this.g.api}/${path}`);
   }
 
   post(path: string, body: any): Observable<any> {
-    // if (path.slice(0, 4) == 'auth') {
-    //   return this.httpBackend.post(`${this.g.webapi}/${path}`, body);
-    // }
-    return this.http.post(`${this.g.webapi}/${path}`, body);
+    return this.http.post(`${this.g.api}/${path}`, body);
+  }
+
+  put(path: string, body: any): Observable<any> {
+    return this.http.post(`${this.g.api}/${path}`, body);
   }
 
   delete(path: string, options: any): Observable<any> {
-    // if (path.slice(0, 4) == 'auth') {
-    //   return this.httpBackend.delete(`${this.g.webapi}/${path}`, options);
-    // }
-    return this.http.delete(`${this.g.webapi}/${path}`, options);
+    return this.http.delete(`${this.g.api}/${path}`, options);
   }
 }

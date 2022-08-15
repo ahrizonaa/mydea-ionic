@@ -1,3 +1,4 @@
+import { ApiService } from './../../../../../mydea/src/app/services/api.service';
 import { LibService } from './../../services/lib.service';
 import { ApiService } from './../../services/api.service';
 import { BehaviorSubject } from 'rxjs';
@@ -148,8 +149,9 @@ export class AppAssistant {
         toastr.present();
       })();
     } else {
+      this.api.put(`${this.globals.api}/features/add`, {});
       this.api
-        .post('features/save', {
+        .put('features/save', {
           _id: this.selected._id,
           feature: this.stagingFeature,
         })
