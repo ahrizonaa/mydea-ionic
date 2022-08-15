@@ -1,6 +1,3 @@
-import { ApiService } from './../../../../../mydea/src/app/services/api.service';
-import { LibService } from './../../services/lib.service';
-import { ApiService } from './../../services/api.service';
 import { BehaviorSubject } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { ElementRef, Injectable } from '@angular/core';
@@ -15,6 +12,8 @@ import {
 } from './subcribe-callbacks';
 import { App } from './App';
 import { ViewStatus, FeatureStatus } from './AppStatus';
+import { ApiService } from 'src/app/services/api.service';
+import { LibService } from 'src/app/services/lib.service';
 
 @Injectable({ providedIn: 'any' })
 export class AppAssistant {
@@ -149,9 +148,8 @@ export class AppAssistant {
         toastr.present();
       })();
     } else {
-      this.api.put(`${this.globals.api}/features/add`, {});
       this.api
-        .put('features/save', {
+        .put(`${this.globals.api}/apps`, {
           _id: this.selected._id,
           feature: this.stagingFeature,
         })
