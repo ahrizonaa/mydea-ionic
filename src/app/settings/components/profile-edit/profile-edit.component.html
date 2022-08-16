@@ -15,9 +15,7 @@
       <ion-input (ionChange)="modified = true" (ionFocus)="showClear = true" (ionBlur)="showClear = false"
         [(ngModel)]="auth.user.displayname" #displayNameInput [clearInput]="showClear" enterkeyhint="done">
       </ion-input>
-      <ion-icon slot="end">
-        <ion-spinner name="crescent"></ion-spinner>
-      </ion-icon>
+      <ion-spinner [hidden]="!saving" name="crescent"></ion-spinner>
     </ion-item>
   </ion-card-content>
 </div>

@@ -76,17 +76,17 @@ export class SettingsComponent implements OnInit, AfterViewInit {
         'app-profile > div'
       ) as HTMLElement | null;
       let height = el == null ? 'auto' : `${el.offsetHeight}px`;
-      console.debug(height);
       this.profileCardMaxHeight = '100vh';
       this.profileCardHeight = height;
-    }, 100);
+    }, 200);
   }
 
   ngOnInit(): void {
     this.d.profileNav$.subscribe((nav: string) => {
       if (nav == 'Edit Display Name') {
         this.ionNav.push(this.profileEdit);
-        console.debug(this.ionNav);
+      } else if (nav == 'Back') {
+        this.ionNav.pop();
       }
     });
   }
