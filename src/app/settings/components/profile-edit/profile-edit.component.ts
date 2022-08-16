@@ -17,6 +17,7 @@ export class ProfileEditComponent implements AfterViewInit {
   displayNameInput: ElementRef;
   showClear: boolean = true;
   modified: boolean = false;
+  saving: boolean = false;
   constructor(public auth: AuthService) {}
 
   ngAfterViewInit(): void {
@@ -25,11 +26,11 @@ export class ProfileEditComponent implements AfterViewInit {
   }
 
   saveDisplayName() {
-    this.modified = false;
+    this.saving = true;
     this.auth.saveDisplayName().subscribe((res: any) => {
       console.log(res);
+      this.saving = false;
       this.modified = false;
     });
-    this.modified = true;
   }
 }
