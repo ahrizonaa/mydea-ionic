@@ -33,6 +33,8 @@ import { ToggleLink } from './portfolio/child-classes/togglelink';
 import { TimelineComponent } from './portfolio/child-classes/timeline/timeline.component';
 import { SwiperModule } from 'swiper/angular';
 import { PosterSliderComponent } from './components/poster-slider/poster-slider.component';
+import { ProfileComponent } from './settings/components/profile/profile.component';
+import { ProfileEditComponent } from './settings/components/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { PosterSliderComponent } from './components/poster-slider/poster-slider.
     ToggleLink,
     TimelineComponent,
     PosterSliderComponent,
+    ProfileComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,

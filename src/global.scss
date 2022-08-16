@@ -128,3 +128,8 @@ app-treasury .swiper-slide ion-card {
   display: block;
   width: 100%;
 }
+
+app-profile-edit {
+  display: flex !important;
+  justify-content: end !important;
+}

@@ -12,25 +12,28 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { Animation, AnimationController, IonImg } from '@ionic/angular';
+import { Animation, AnimationController, IonImg, IonNav } from '@ionic/angular';
 import * as _ from 'lodash';
 import { GlobalsService } from '../services/globals.service';
 import { Photo } from '@capacitor/camera';
 import { UserData } from '../login/child-classes/User';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent implements OnInit, AfterViewInit {
+export class SettingsComponent implements OnInit {
   @ViewChild('profileImg') profileImg: any;
-
-  //bgs: number[][] = _.chunk(Array.from(new Array(16).keys()), 3);
+  @ViewChild('ionNav', { read: IonNav }) ionNav: IonNav;
   bgs: number[] = Array.from(new Array(16).keys());
   bgImage = 'url(../../assets/images/bg-1.jpg)';
   pfp = 'url(../../assets/svg/avatar.svg)';
   profileImgEdit: HTMLElement;
+  profileRoot: any;
+  profileEdit: any;
 
   constructor(
     public auth: AuthService,
@@ -42,14 +45,24 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   ) {
     this.pfp = 'url(../../assets/svg/avatar.svg)';
     this.renderProfileImgEditBtn();
+    this.profileRoot = ProfileComponent;
+    this.profileEdit = ProfileEditComponent;
   }
-  ngAfterViewInit(): void {
-    this.profileImg.el.shadowRoot.appendChild(this.profileImgEdit);
-  }
+  // ngAfterViewInit(): void {
+  //   this.profileImg.el.shadowRoot.appendChild(this.profileImgEdit);
+  // }
+  // ngOnInit(): void {
+  //   this.d.user$.subscribe((user: UserData) => {
+  //     if (user.settings !== undefined && user.settings.pfp) {
+  //       this.pfp = user.settings.pfp;
+  //     }
+  //   });
+  // }
+
   ngOnInit(): void {
-    this.d.user$.subscribe((user: UserData) => {
-      if (user.settings !== undefined && user.settings.pfp) {
-        this.pfp = user.settings.pfp;
+    this.d.profileNav$.subscribe((nav: string) => {
+      if (nav == 'Edit Display Name') {
+        this.ionNav.push(this.profileEdit);
       }
     });
   }
