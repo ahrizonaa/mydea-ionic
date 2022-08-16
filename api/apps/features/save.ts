@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { ObjectId } from 'mongodb';
-import { db } from 'api/lib/_db';
+import { db } from '../../lib/_db';
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   try {
