@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { twilioclient } from 'api/lib/_twilio';
+import { twilioclient } from '../lib/_twilio';
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   try {
