@@ -33,6 +33,13 @@ export class AuthService {
     private d: DispatcherService
   ) {}
 
+  saveDisplayName(): Observable<any> {
+    return this.api.put('user/displayname', {
+      _id: this.user._id,
+      displayname: this.user.displayname,
+    });
+  }
+
   async initUser() {
     console.debug('INIT_USER');
     const usr = localStorage.getItem('user');

@@ -1,3 +1,4 @@
+import { LibService } from './../services/lib.service';
 import { DispatcherService } from './../services/dispatcher.service';
 import { ApiService } from './../services/api.service';
 import { FotoService } from './../services/foto.service';
@@ -12,7 +13,13 @@ import {
   Renderer2,
 } from '@angular/core';
 
-import { Animation, AnimationController, IonImg, IonNav } from '@ionic/angular';
+import {
+  Animation,
+  AnimationController,
+  DomController,
+  IonImg,
+  IonNav,
+} from '@ionic/angular';
 import * as _ from 'lodash';
 import { GlobalsService } from '../services/globals.service';
 import { Photo } from '@capacitor/camera';
@@ -25,15 +32,18 @@ import { ProfileEditComponent } from './components/profile-edit/profile-edit.com
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, AfterViewInit {
   @ViewChild('profileImg') profileImg: any;
   @ViewChild('ionNav', { read: IonNav }) ionNav: IonNav;
+  @ViewChild('profileCard', { read: ElementRef }) profileCard: ElementRef;
   bgs: number[] = Array.from(new Array(16).keys());
   bgImage = 'url(../../assets/images/bg-1.jpg)';
   pfp = 'url(../../assets/svg/avatar.svg)';
   profileImgEdit: HTMLElement;
   profileRoot: any;
   profileEdit: any;
+  profileCardHeight: string = 'auto';
+  profileCardMaxHeight: string = '35vh';
 
   constructor(
     public auth: AuthService,
@@ -41,7 +51,8 @@ export class SettingsComponent implements OnInit {
     public foto: FotoService,
     public api: ApiService,
     public d: DispatcherService,
-    private html: Renderer2
+    private html: Renderer2,
+    public lib: LibService
   ) {
     this.pfp = 'url(../../assets/svg/avatar.svg)';
     this.renderProfileImgEditBtn();
@@ -59,10 +70,23 @@ export class SettingsComponent implements OnInit {
   //   });
   // }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      let el = document.querySelector(
+        'app-profile > div'
+      ) as HTMLElement | null;
+      let height = el == null ? 'auto' : `${el.offsetHeight}px`;
+      console.debug(height);
+      this.profileCardMaxHeight = '100vh';
+      this.profileCardHeight = height;
+    }, 100);
+  }
+
   ngOnInit(): void {
     this.d.profileNav$.subscribe((nav: string) => {
       if (nav == 'Edit Display Name') {
         this.ionNav.push(this.profileEdit);
+        console.debug(this.ionNav);
       }
     });
   }

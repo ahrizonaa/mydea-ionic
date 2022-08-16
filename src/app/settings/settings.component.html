@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-card id="ion-nav-card">
+  <ion-card [style.maxHeight]="profileCardMaxHeight" [style.height]="profileCardHeight" #profileCard id="ion-nav-card">
     <ion-nav #ionNav [root]="profileRoot"></ion-nav>
   </ion-card>
 

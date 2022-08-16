@@ -1,8 +1,20 @@
-<div class="profile-edit-container">
+<div>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/settings" text="Back"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Edit Greeting Name</ion-title>
+      <ion-buttons *ngIf="modified" slot="end">
+        <ion-button (ionClick)="saveDisplayName()">Save</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
   <ion-card-content>
-    <ion-item lines="none" id="display-name-input">
-      <ion-label position="floating">Greeting Name</ion-label>
-      <ion-input #displayNameInput enterkeyhint="done"></ion-input>
+    <ion-item class="ion-text-center" lines="none" id="display-name-input">
+      <ion-input (ionChange)="modified = true" (ionFocus)="showClear = true" (ionBlur)="showClear = false"
+        [(ngModel)]="auth.user.displayname" #displayNameInput [clearInput]="showClear" enterkeyhint="done">
+      </ion-input>
     </ion-item>
   </ion-card-content>
 </div>
