@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   put(path: string, body: any): Observable<any> {
-    return this.http.post(`${this.g.api}/${path}`, body);
+    return this.http.put(`${this.g.api}/${path}`, body);
   }
 
   delete(path: string, options: any): Observable<any> {
