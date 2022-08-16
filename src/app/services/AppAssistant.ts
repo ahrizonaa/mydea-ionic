@@ -58,7 +58,7 @@ export class AppAssistant {
   async refresh(useRefresher: boolean = false) {
     this.loading = true;
     this.api
-      .get('apps')
+      .get('apps/fetch')
       .subscribe(RefreshApps.success.bind(this, useRefresher));
   }
 
