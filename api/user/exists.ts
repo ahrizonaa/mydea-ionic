@@ -8,7 +8,11 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   } catch (exception) {
     res.status(500).send({
       msg: 'Error searching for user',
-      exception: exception,
+      exception: {
+        msg: exception.message,
+        name: exception.name,
+        stack: exception.stack,
+      },
     });
   }
 }
