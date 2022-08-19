@@ -9,13 +9,16 @@ export default async function (req: VercelRequest, res: VercelResponse) {
       .collection('Apps')
       .find({})
       .map((doc) => {
-        doc.originator = db
-          .collection('Users')
-          .findOne({ _id: doc.originator }, { _id: 1, displayname: 1 });
-        doc.collaborators = doc.collaborators.map((c) => {
-          return db
-            .collection('Users')
-            .findOne({ _id: c }, { projection: { _id: 1, displayname: 1 } });
+        let orig: any = db.collection('Users').findOne({ _id: doc.originator });
+        doc.originator = {
+          _id: orig._id,
+          displayname: orig.displayname,
+        };
+        let collabs: any[] = doc.collaborators.map((c) => {
+          return db.collection('Users').findOne({ _id: c });
+        });
+        doc.collaborators = collabs.map((collab) => {
+          return { _id: collab._id, displayname: collab.displayname };
         });
         return doc;
       })
