@@ -15,7 +15,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
         doc.collaborators = doc.collaborators.map((c) => {
           return db
             .collection('Users')
-            .findOne({ _id: c }, { _id: 1, displayname: 1 });
+            .findOne({ _id: c }, { projection: { _id: 1, displayname: 1 } });
         });
         return doc;
       })
