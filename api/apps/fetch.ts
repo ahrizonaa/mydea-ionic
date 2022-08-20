@@ -8,17 +8,16 @@ export default async function (req: VercelRequest, res: VercelResponse) {
     let apps = await db
       .collection('Apps')
       .find({})
-      .map((doc) => {
-        let orig: any = db.collection('Users').findOne({ _id: doc.originator });
-        doc.originator = {
-          _id: orig._id,
-          displayname: orig.displayname,
-        };
-        let collabs: any[] = doc.collaborators.map((c) => {
-          return db.collection('Users').findOne({ _id: c });
-        });
-        doc.collaborators = collabs.map((collab) => {
-          return { _id: collab._id, displayname: collab.displayname };
+      .map(async (doc) => {
+        let orig: any = await db
+          .collection('Users')
+          .findOne({ _id: doc.originator });
+        delete orig.pfp;
+        doc.originator = orig;
+        doc.collaborators = doc.collaborators.map(async (c) => {
+          let collab = await db.collection('Users').findOne({ _id: c });
+          delete collab.pfp;
+          return collab;
         });
         return doc;
       })
