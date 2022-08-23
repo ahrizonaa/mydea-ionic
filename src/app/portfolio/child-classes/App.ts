@@ -15,8 +15,8 @@ class App {
   _id?: any;
   name: string = '';
   description: string = '';
-  originator: string = '';
-  collaborators: string[] = [];
+  originator: any = {};
+  collaborators: any[] = [];
   features: string[] = [];
   timeline: Timeline = new Timeline();
   initiated: boolean = false;
