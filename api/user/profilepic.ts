@@ -2,21 +2,29 @@ import { imagekitclient } from '../lib/_imagekit';
 import { v4 as uuidv4 } from 'uuid';
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import {
+  IKCallback,
+  UploadOptions,
+  UploadResponse,
+  UrlOptions,
+} from 'imagekit/dist/libs/interfaces';
 
 export default async function (req: VercelRequest, res: VercelResponse) {
-  var url = '';
+  var uploadOptions: UploadOptions = {
+    file: req.body.image,
+    fileName: `${uuidv4()}.png`,
+  };
+
   try {
     imagekitclient.upload(
-      {
-        file: req.body.image,
-        fileName: `${uuidv4()}.png`,
-      },
-      (err, res) => {
-        if (err) {
-          res.status(500).send(err);
+      uploadOptions,
+      (imgkiterr: Error, imgkitres: UploadResponse) => {
+        if (imgkiterr) {
+          res.status(500).send(imgkiterr);
         } else {
-          url = imagekitclient.url(res.url);
-          res.status(200).send(url);
+          let urlOptions: UrlOptions = { src: imgkitres.url };
+          let imgHostingUrl = imagekitclient.url(urlOptions);
+          res.status(200).send(imgHostingUrl);
         }
       }
     );
