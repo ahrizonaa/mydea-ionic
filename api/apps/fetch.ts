@@ -3,43 +3,29 @@ import { db } from '../lib/_db';
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   try {
-    // let apps = await db.collection('Apps').find({}).toArray();
+    let users = db.collection('Users');
+    let apps = db.collection('Apps');
 
-    let users = await db.collection('Users').find({}).toArray();
+    let userlist = await users.find({}).toArray();
 
-    let apps = await db.collection('Apps').find({}).toArray();
+    let applist = await apps.find({}).toArray();
 
-    // apps.forEach((app) => {
-    //   app.originator = users
-    //     .filter((user) => {
-    //       return user._id.toString() == app.originator.toString();
-    //     })
-    //     .pop();
+    applist.forEach((app) => {
+      app.originator = userlist
+        .filter((user) => {
+          return user._id.toString() == app.originator.toString();
+        })
+        .pop();
 
-    //   let collabs = app.collaborators.map((collab) => {
-    //     return collab.toString();
-    //   });
-    //   app.collaborators = users.filter((user) => {
-    //     return collabs.includes(user._id.toString());
-    //   });
-    // });
+      let collabs = app.collaborators.map((collab) => {
+        return collab.toString();
+      });
+      app.collaborators = userlist.filter((user) => {
+        return collabs.includes(user._id.toString());
+      });
+    });
 
-    // .map(async (doc) => {
-    //   let orig: any = await db
-    //     .collection('Users')
-    //     .findOne({ _id: doc.originator });
-    //   delete orig.pfp;
-    //   doc.originator = orig;
-    //   doc.collaborators = doc.collaborators.map(async (c) => {
-    //     let collab = await db.collection('Users').findOne({ _id: c });
-    //     delete collab.pfp;
-    //     return collab;
-    //   });
-    //   return doc;
-    // })
-    // .toArray();
-
-    res.status(200).send(apps);
+    res.status(200).send(applist);
   } catch (exception) {
     res.status(500).send(exception);
   }
