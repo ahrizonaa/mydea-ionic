@@ -9,20 +9,20 @@ export default async function (req: VercelRequest, res: VercelResponse) {
 
     let apps = await db.collection('Apps').find({}).toArray();
 
-    apps.forEach((app) => {
-      app.originator = users
-        .filter((user) => {
-          return user._id.toString() == app.originator.toString();
-        })
-        .pop();
+    // apps.forEach((app) => {
+    //   app.originator = users
+    //     .filter((user) => {
+    //       return user._id.toString() == app.originator.toString();
+    //     })
+    //     .pop();
 
-      let collabs = app.collaborators.map((collab) => {
-        return collab.toString();
-      });
-      app.collaborators = users.filter((user) => {
-        return collabs.includes(user._id.toString());
-      });
-    });
+    //   let collabs = app.collaborators.map((collab) => {
+    //     return collab.toString();
+    //   });
+    //   app.collaborators = users.filter((user) => {
+    //     return collabs.includes(user._id.toString());
+    //   });
+    // });
 
     // .map(async (doc) => {
     //   let orig: any = await db
