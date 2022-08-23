@@ -13,6 +13,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   var uploadOptions: UploadOptions = {
     file: req.body.image,
     fileName: `${uuidv4()}.png`,
+    folder: '/mdyea/profilepics',
   };
 
   try {
