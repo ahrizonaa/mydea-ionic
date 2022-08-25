@@ -1,0 +1,9 @@
+#display-name-input {
+  border-radius: 10px;
+}
+
+ion-card-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

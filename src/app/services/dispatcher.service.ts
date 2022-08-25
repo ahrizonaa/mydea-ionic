@@ -11,4 +11,5 @@ export class DispatcherService {
   user$: BehaviorSubject<UserData> = new BehaviorSubject({});
   pfp$: BehaviorSubject<string> = new BehaviorSubject('');
   appRefresh$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  profileNav$: BehaviorSubject<string> = new BehaviorSubject('');
 }

@@ -1,0 +1,29 @@
+ion-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tap-to-edit-btn {
+  position: absolute;
+  top: 0;
+  width: 10rem;
+  border-radius: 50%;
+  height: 10rem;
+  display: flex;
+  align-items: flex-end;
+}
+
+ion-img {
+  position: relative;
+}
+
+/* .profile-item {
+  border-radius: 5px;
+} */
+
+#displayname {
+  margin-top: 15px;
+  border-radius: 10px;
+}

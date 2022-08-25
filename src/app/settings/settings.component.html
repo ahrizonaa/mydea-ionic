@@ -1,5 +1,9 @@
 <ion-content>
-  <ion-card>
+  <ion-card [style.maxHeight]="profileCardMaxHeight" [style.height]="profileCardHeight" #profileCard id="ion-nav-card">
+    <ion-nav #ionNav [root]="profileRoot"></ion-nav>
+  </ion-card>
+
+  <!-- <ion-card>
     <ion-card-header>
       <ion-card-title id="displayname">
         <ion-avatar style="width: 10rem; height: 10rem" slot="">
@@ -12,7 +16,7 @@
         <ion-text class="ion-padding-top">{{ auth.user.displayname }}</ion-text>
       </ion-card-title>
     </ion-card-header>
-  </ion-card>
+  </ion-card> -->
 
   <ion-card>
     <ion-card-header>

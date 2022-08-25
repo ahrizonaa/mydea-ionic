@@ -5,7 +5,10 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["mydea-ionic/tsconfig.json", "mydea-ionic/e2e/tsconfig.json"],
+        "project": [
+          "mydea-ionic/tsconfig.json",
+          "mydesa-ionic/e2e/tsconfig.json"
+        ],
         "createDefaultProgram": true
       },
       "extends": [

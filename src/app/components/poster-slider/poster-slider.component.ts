@@ -33,7 +33,6 @@ export class PosterSliderComponent implements AfterViewInit {
     };
   }
   ngAfterViewInit() {
-    console.log(this.swiper);
     this.swiper.modules = [Parallax, EffectCreative];
   }
 

@@ -1,0 +1,23 @@
+<div>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Greeting Name</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card-content>
+    <ion-avatar style="width: 10rem; height: 10rem" slot="">
+      <ion-img #profileImg [src]="pfp">
+      </ion-img>
+      <ion-button fill="clear" (click)="takePicture()" class="tap-to-edit-btn">
+
+      </ion-button>
+    </ion-avatar>
+    <ion-item lines="none" id="displayname" class="ion-text-center" [style.width]="'100%'" button
+      (click)="editDisplayName()">
+      <ion-label>
+        <ion-text>{{ auth.user.displayname }}</ion-text>
+      </ion-label>
+    </ion-item>
+    <!-- <ion-text class="ion-padding-top">{{ auth.user.displayname }}</ion-text> -->
+  </ion-card-content>
+</div>
