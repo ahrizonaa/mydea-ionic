@@ -71,14 +71,16 @@ export class AppAssistant {
   }
 
   set(apps: App[]) {
+    console.log('apps', apps);
     this.groupedApps = this.lib._.groupBy(
-      this.lib._.forEach(
-        apps,
-        (e: App) => (e.originator = !e.originator ? 'Lisa' : e.originator)
-      ),
-      'originator'
+      apps,
+      (app: App) => app.originator.displayname
     );
+
+    console.log('groupedApps', this.groupedApps);
+
     this.collaborators = Object.keys(this.groupedApps);
+    console.log('collaborators', this.collaborators);
     this.loading = false;
   }
 
@@ -115,7 +117,7 @@ export class AppAssistant {
 
   create() {
     this.creating = true;
-    this.stagingApp.originator = this.auth.user.displayname;
+    this.stagingApp.originator = this.auth.user;
     this.api
       .post('apps/save', { ...this.stagingApp })
       .subscribe(

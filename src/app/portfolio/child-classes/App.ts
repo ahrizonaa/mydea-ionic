@@ -1,13 +1,14 @@
 import * as _ from 'lodash';
+import { UserData } from 'src/app/login/child-classes/User';
 
 class App {
   constructor(
     name: string = '',
-    originator: string = '',
+    originator: UserData = {},
     features: string[] = []
   ) {
     this.name = name || '';
-    this.originator = originator || '';
+    this.originator = originator || {};
     this.features = features;
     this._id = undefined;
   }
@@ -15,8 +16,8 @@ class App {
   _id?: any;
   name: string = '';
   description: string = '';
-  originator: any = {};
-  collaborators: any[] = [];
+  originator: UserData = {};
+  collaborators: UserData[] = [];
   features: string[] = [];
   timeline: Timeline = new Timeline();
   initiated: boolean = false;
