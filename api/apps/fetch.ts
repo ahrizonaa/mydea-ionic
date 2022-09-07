@@ -47,7 +47,10 @@ export default async function (req: VercelRequest, res: VercelResponse) {
     // });
 
     res.status(200).send(result);
-  } catch (exception) {
-    res.status(500).send(exception);
+  } catch (exception: any) {
+    console.log('ERROR OCCURRED');
+    console.log(exception.message);
+    console.log(exception.toString());
+    res.status(500).send(exception.message);
   }
 }

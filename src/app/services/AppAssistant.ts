@@ -56,10 +56,21 @@ export class AppAssistant {
   refresher: ElementRef;
 
   async refresh(useRefresher: boolean = false) {
-    this.loading = true;
-    this.api
-      .get('apps/fetch')
-      .subscribe(RefreshApps.success.bind(this, useRefresher));
+    try {
+      // this.loading = true;
+      // this.api
+      //   .get('apps/fetch')
+      //   .subscribe(RefreshApps.success.bind(this, useRefresher));
+
+      this.loading = true;
+      this.api.get('apps/fetch').subscribe((res: any) => {
+        console.log(res);
+        this.refresher.nativeElement.complete();
+        this.set(res);
+      });
+    } catch (exception) {
+      console.log(exception.message);
+    }
   }
 
   add() {
