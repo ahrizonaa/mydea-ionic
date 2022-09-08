@@ -4,7 +4,7 @@
   </ion-refresher>
 
   <ng-container *ngIf="!apps.loading">
-    <div class="puff-in-center" *ngFor="let person of apps.collaborators">
+    <div class="puff-in-center" *ngFor="let person of apps.originators">
       <ion-button color="pretty-princess-pink" size="small" (click)="getSize(appTileFlex)" class="originator-label">
         {{ person }}
       </ion-button>

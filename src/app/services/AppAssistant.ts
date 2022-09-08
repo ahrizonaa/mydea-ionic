@@ -41,7 +41,7 @@ export class AppAssistant {
   selected: App = new App();
   selectedForDelete: App = new App();
 
-  collaborators: string[] = [];
+  originators: any[] = [];
 
   stagingFeature: string = '';
   stagingApp: App = new App();
@@ -83,15 +83,16 @@ export class AppAssistant {
 
   set(apps: App[]) {
     console.log('apps', apps);
-    this.groupedApps = this.lib._.groupBy(
-      apps,
-      (app: App) => app.originator.displayname
-    );
+    this.groupedApps = this.lib._.groupBy(apps, (app: any) => {
+      return app.originator.length > 0
+        ? app.originator[0].displayname
+        : 'No Originator';
+    });
 
     console.log('groupedApps', this.groupedApps);
 
-    this.collaborators = Object.keys(this.groupedApps);
-    console.log('collaborators', this.collaborators);
+    this.originators = Object.keys(this.groupedApps);
+    console.log('originators', this.originators);
     this.loading = false;
   }
 
