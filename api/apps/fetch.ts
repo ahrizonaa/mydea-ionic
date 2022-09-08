@@ -29,7 +29,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
       },
     ];
 
-    let result = apps.aggregate(agg);
+    let result = await apps.aggregate(agg).toArray();
 
     // applist.forEach((app) => {
     //   app.originator = userlist
