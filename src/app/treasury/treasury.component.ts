@@ -133,10 +133,20 @@ export class TreasuryComponent implements OnInit {
   }
 
   acceptClicked(perk: any) {
-    this.http.post('https://mydeas.vercel.app/api/perks/accept', {
-      user: this.auth.user.displayname,
-      perk: perk,
-    });
+    this.http
+      .post('https://mydeas.vercel.app/api/perks/accept', {
+        user: this.auth.user.displayname,
+        perk: perk,
+      })
+      .subscribe({
+        next: (result: any) => {
+          console.log(result);
+        },
+        error: (error: any) => {
+          console.log(error);
+        },
+        complete: () => {},
+      });
   }
 
   slideChanged(event: any) {}
