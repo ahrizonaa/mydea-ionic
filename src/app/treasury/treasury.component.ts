@@ -29,18 +29,7 @@ SwiperCore.use([
   templateUrl: './treasury.component.html',
   styleUrls: ['./treasury.component.scss'],
 })
-export class TreasuryComponent implements OnInit {
-  accessKey = 'guFi2sERZWAns62fdRbA_WAGW_RTGlmntE2eQ4sv75w';
-  // this.cards.forEach(async (card) => {
-  //   this.http
-  //     .get(
-  //       `https://api.unsplash.com/photos/random/?query=${card.name}&client_id=${this.accessKey}`,
-  //       requestOptions
-  //     )
-  //     .subscribe((result: any) => {
-  //       card.link = result.urls.small;
-  //     });
-  // });
+export class TreasuryComponent {
   cards: any[] = [
     {
       name: 'Microsoft Office',
@@ -123,14 +112,6 @@ export class TreasuryComponent implements OnInit {
   ];
 
   constructor(private http: HttpClient, private auth: AuthService) {}
-
-  ngOnInit(): void {
-    let requestOptions = {
-      headers: new HttpHeaders({
-        Authorization: 'Client-ID guFi2sERZWAns62fdRbA_WAGW_RTGlmntE2eQ4sv75w',
-      }),
-    };
-  }
 
   acceptClicked(perk: any) {
     this.http
