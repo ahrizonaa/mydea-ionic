@@ -22,7 +22,7 @@
             <ion-card-title>{{ card.name }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-button [disabled]="true">July 1st</ion-button>
+            <ion-button (click)="acceptClicked(card)">Accept</ion-button>
           </ion-card-content>
         </ion-card>
       </div>

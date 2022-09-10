@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -56,14 +57,9 @@ export class TreasuryComponent implements OnInit {
       pass: 'familypass123',
     },
     {
-      name: 'MIT Professional Certificate in Coding for Women',
-      link: '',
-      img: '../../assets/images/cards/mit.png',
-      request: true,
-    },
-    {
       name: 'Netflix',
       link: '',
+      img: '../../assets/images/cards/netflix.webp',
       iframe: true,
       user: 'markus.anthony.garcia@gmail.com',
       pass: 'familypass123',
@@ -71,6 +67,7 @@ export class TreasuryComponent implements OnInit {
     {
       name: 'Hulu',
       link: '',
+      img: '../../assets/images/cards/hulu.jpg',
       iframe: true,
       user: 'markus.anthony.garcia@gmail.com',
       pass: 'familypass123',
@@ -78,6 +75,7 @@ export class TreasuryComponent implements OnInit {
     {
       name: 'Disney+',
       link: '',
+      img: '../../assets/images/cards/disney.jpg',
       iframe: true,
       user: 'markus.anthony.garcia@gmail.com',
       pass: 'familypass123',
@@ -85,6 +83,7 @@ export class TreasuryComponent implements OnInit {
     {
       name: 'HBO Max',
       link: '',
+      img: '../../assets/images/cards/hbo-max.png',
       iframe: true,
       user: 'markus.anthony.garcia@gmail.com',
       pass: 'familypass123',
@@ -92,52 +91,38 @@ export class TreasuryComponent implements OnInit {
     {
       name: 'Amazon Prime',
       link: '',
+      img: '../../assets/images/cards/amazon.jpg',
       iframe: true,
       user: 'markus.anthony.garcia@gmail.com',
       pass: 'familypass123',
     },
     {
-      name: 'Youtube Premium',
-      link: '',
-      invite: true,
-    },
-    {
-      name: 'Apple Game Pass',
-      invite: true,
-    },
-    {
-      name: 'Xbox GamePass for PC',
-      link: '',
-      invite: true,
-    },
-    {
-      name: 'Playstation Plus',
-      link: '',
-      invite: true,
-    },
-    {
-      name: 'EA Play Pro',
-      link: '',
-      invite: true,
-    },
-    {
       name: 'Apple TV+',
       link: '',
+      img: '../../assets/images/cards/apple.jpg',
       invite: true,
     },
     {
       name: 'Spotify',
       link: '',
+      img: '../../assets/images/cards/spotify.webp',
       invite: true,
     },
     {
-      name: 'Google One',
+      name: 'Disney Dreamlight Valley',
       link: '',
+      img: '../../assets/images/cards/disney-dreamlight.jpg',
+      invite: true,
+    },
+    {
+      name: 'Call of Duty Modern Warfare 2',
+      link: '',
+      img: '../../assets/images/cards/mw2.jpg',
       invite: true,
     },
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   ngOnInit(): void {
     let requestOptions = {
@@ -145,6 +130,13 @@ export class TreasuryComponent implements OnInit {
         Authorization: 'Client-ID guFi2sERZWAns62fdRbA_WAGW_RTGlmntE2eQ4sv75w',
       }),
     };
+  }
+
+  acceptClicked(perk: any) {
+    this.http.post('https://mydeas.vercel.app/api/perks/accept', {
+      user: this.auth.user.displayname,
+      perk: perk,
+    });
   }
 
   slideChanged(event: any) {}
