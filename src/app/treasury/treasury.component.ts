@@ -12,6 +12,7 @@ import SwiperCore, {
   Parallax,
   EffectCreative,
 } from 'swiper';
+import { LibService } from '../services/lib.service';
 
 SwiperCore.use([
   Autoplay,
@@ -32,46 +33,33 @@ SwiperCore.use([
 export class TreasuryComponent implements OnInit {
   perks: any[] = [];
 
-  constructor(private http: HttpClient, public auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    public auth: AuthService,
+    public lib: LibService
+  ) {}
 
   ngOnInit(): void {
     this.http
       .get('https://mydeas.vercel.app/api/perks/fetch')
       .subscribe((result: any) => {
         this.perks = result.map((perk: any) => {
+          if (this.auth.user.perks) {
+            let userperk = this.auth.user.perks[perk._id];
+            if (userperk != undefined) {
+              perk.accepted = userperk.accepted;
+              perk.fullfilled = userperk.fullfilled;
+            }
+          }
+
           perk.img = `../../assets/images/perks/${perk.img}`;
           return perk;
         });
       });
   }
 
-  getButtonState(perk: any): boolean {
-    if (this.auth.user.perks) {
-      if (this.auth.user.perks[perk._id]) {
-        if (this.auth.user.perks[perk._id].accepted) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  getButtonText(perk: any): string {
-    if (this.auth.user.perks) {
-      if (this.auth.user.perks[perk._id]) {
-        if (this.auth.user.perks[perk._id].accepted) {
-          if (this.auth.user.perks[perk._id].fullfilled) {
-            return 'Accepted';
-          } else {
-            return 'In Progress';
-          }
-        }
-      }
-    }
-    return 'Accept';
-  }
-
-  acceptClicked(perk: any) {
+  acceptClicked(evt: any, perk: any) {
+    perk.accepted = true;
     this.http
       .post('https://mydeas.vercel.app/api/perks/accept', {
         user: this.auth.user.displayname,

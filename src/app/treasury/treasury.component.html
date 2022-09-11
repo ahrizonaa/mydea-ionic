@@ -22,8 +22,11 @@
             <ion-card-title>{{ perk.name }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-button [disabled]="getButtonState(perk)" (click)="acceptClicked(perk)">
-              {{ getButtonText(perk) }}
+            <ion-button *ngIf="!perk.fulfilled" expand="block" [disabled]="perk.accepted"
+              (click)="acceptClicked($event, perk)">
+              <ion-spinner *ngIf="perk.accepted" style="position: absolute; left: 0" name="crescent"></ion-spinner>
+              {{ perk.accepted ? 'Accepted' : 'Accept' }}
+
             </ion-button>
           </ion-card-content>
         </ion-card>
