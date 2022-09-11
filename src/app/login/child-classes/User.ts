@@ -1,15 +1,11 @@
 import { Moment } from 'moment';
-import * as moment from 'moment';
 export class User {
   constructor(u: UserData) {
     this._id = u._id;
     this.tel = u.tel || '';
     this.displayname = u.displayname || '';
-    // this.validatedon =
-    //   u.validatedon == null || u.validatedon == undefined
-    //     ? undefined
-    //     : moment(u.validatedon);
     this.settings = u.settings || {};
+    this.perks = u.perks || {};
   }
   public _id: string | undefined = '';
   public displayname: string = '';
@@ -18,6 +14,7 @@ export class User {
   public authenticated: boolean | undefined;
   public settings: any;
   public auth_date_diff: number;
+  public perks: any;
 }
 
 export interface UserData {
@@ -26,4 +23,5 @@ export interface UserData {
   displayname?: string;
   validatedon?: Moment;
   settings?: any;
+  perks?: any;
 }
