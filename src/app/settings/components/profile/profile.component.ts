@@ -57,13 +57,13 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   saveProfilePic(image: Photo) {
-    this.auth.user.settings.pfp = image.dataUrl;
-    this.pfp = image.dataUrl || '';
     console.log(image);
     this.api
       .post('user/profilepic', { base64String: image.base64String })
       .subscribe((res: any) => {
         console.log(res);
+        this.auth.user.settings.pfp = res.imgHostingUrl;
+        this.pfp = res.imgHostingUrl || '';
         this.api
           .post('settings/save', {
             user: this.auth.user,
