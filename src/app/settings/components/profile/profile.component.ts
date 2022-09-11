@@ -61,11 +61,16 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     this.pfp = image.dataUrl || '';
 
     this.api
-      .post('settings/save', {
-        user: this.auth.user,
-        settings: { pfp: image.dataUrl },
-      })
-      .subscribe();
+      .post('user/profilepic', { base64String: image.base64String })
+      .subscribe((res: any) => {
+        console.log(res);
+        this.api
+          .post('settings/save', {
+            user: this.auth.user,
+            settings: { pfp: res.imgHostingUrl },
+          })
+          .subscribe();
+      });
   }
 
   renderProfileImgEditBtn() {

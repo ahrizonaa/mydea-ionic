@@ -25,7 +25,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
         } else {
           let urlOptions: UrlOptions = { src: imgkitres.url };
           let imgHostingUrl = imagekitclient.url(urlOptions);
-          res.status(200).send(imgHostingUrl);
+          res.status(200).send({ imgHostingUrl: imgHostingUrl });
         }
       }
     );
