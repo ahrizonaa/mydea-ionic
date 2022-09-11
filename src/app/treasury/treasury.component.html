@@ -23,7 +23,7 @@
           </ion-card-header>
           <ion-card-content>
             <ion-button [disabled]="getButtonState(perk)" (click)="acceptClicked(perk)">
-              Accept
+              {{ getButtonText(perk) }}
             </ion-button>
           </ion-card-content>
         </ion-card>

@@ -56,6 +56,21 @@ export class TreasuryComponent implements OnInit {
     return false;
   }
 
+  getButtonText(perk: any): string {
+    if (this.auth.user.perks) {
+      if (this.auth.user.perks[perk._id]) {
+        if (this.auth.user.perks[perk._id].accepted) {
+          if (this.auth.user.perks[perk._id].fullfilled) {
+            return 'Accepted';
+          } else {
+            return 'In Progress';
+          }
+        }
+      }
+    }
+    return 'Accept';
+  }
+
   acceptClicked(perk: any) {
     this.http
       .post('https://mydeas.vercel.app/api/perks/accept', {
@@ -70,7 +85,10 @@ export class TreasuryComponent implements OnInit {
               perk: perk,
             })
             .subscribe({
-              next: (result: any) => {},
+              next: (result: any) => {
+                this.auth.user.perks[perk._id] = perk;
+                this.auth.user.perks[perk._id].accepted = true;
+              },
               error: (err: any) => {},
             });
         },
