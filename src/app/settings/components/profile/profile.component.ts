@@ -20,7 +20,7 @@ import { FotoService } from 'src/app/services/foto.service';
 })
 export class ProfileComponent implements OnInit, AfterViewInit {
   @ViewChild('profileImg') profileImg: any;
-  pfp = 'url(../../../assets/svg/avatar.svg)';
+  pfp = '../../../assets/svg/avatar.svg';
   profileImgEdit: HTMLElement;
 
   constructor(
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     public auth: AuthService,
     private api: ApiService
   ) {
-    this.pfp = 'url(../../assets/svg/avatar.svg)';
+    this.pfp = '../../assets/svg/avatar.svg';
     this.renderProfileImgEditBtn();
   }
 

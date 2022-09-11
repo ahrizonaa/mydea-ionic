@@ -64,13 +64,10 @@ export class AppAssistant {
 
       this.loading = true;
       this.api.get('apps/fetch').subscribe((res: any) => {
-        console.log(res);
         this.refresher.nativeElement.complete();
         this.set(res);
       });
-    } catch (exception) {
-      console.log(exception.message);
-    }
+    } catch (exception) {}
   }
 
   add() {
@@ -82,17 +79,13 @@ export class AppAssistant {
   }
 
   set(apps: App[]) {
-    console.log('apps', apps);
     this.groupedApps = this.lib._.groupBy(apps, (app: any) => {
       return app.originator.length > 0
         ? app.originator[0].displayname
         : 'No Originator';
     });
 
-    console.log('groupedApps', this.groupedApps);
-
     this.originators = Object.keys(this.groupedApps);
-    console.log('originators', this.originators);
     this.loading = false;
   }
 
