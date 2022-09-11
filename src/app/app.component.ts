@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { GlobalsService } from './services/globals.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,9 @@ export class AppComponent implements OnInit {
     public globals: GlobalsService,
     private auth: AuthService,
     private router: Router
-  ) {}
+  ) {
+    defineCustomElements(window);
+  }
 
   ngOnInit(): void {
     console.debug('APP COMPONENT');
