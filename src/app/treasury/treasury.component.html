@@ -22,7 +22,7 @@
             <ion-card-title>{{ perk.name }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-button [disabled]="this.auth.user.perks[perk.name].requested" (click)="acceptClicked(perk)">
+            <ion-button [disabled]="getButtonState(perk)" (click)="acceptClicked(perk)">
               Accept
             </ion-button>
           </ion-card-content>

@@ -39,10 +39,21 @@ export class TreasuryComponent implements OnInit {
       .get('https://mydeas.vercel.app/api/perks/fetch')
       .subscribe((result: any) => {
         this.perks = result.map((perk: any) => {
-          perk.img = `../../assets/perks/${perk.img}`;
+          perk.img = `../../assets/images/perks/${perk.img}`;
           return perk;
         });
       });
+  }
+
+  getButtonState(perk: any): boolean {
+    if (this.auth.user.perks) {
+      if (this.auth.user.perks[perk._id]) {
+        if (this.auth.user.perks[perk._id].accepted) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   acceptClicked(perk: any) {
