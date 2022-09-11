@@ -12,7 +12,7 @@ export class FotoService {
     return await Camera.getPhoto({
       quality: 100,
       allowEditing: true,
-      resultType: CameraResultType.DataUrl,
+      resultType: CameraResultType.Base64,
     });
   }
 
