@@ -1,3 +1,4 @@
+import { ToastController } from '@ionic/angular';
 import { AuthService } from './../services/auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -36,10 +37,25 @@ export class TreasuryComponent implements OnInit {
   constructor(
     private http: HttpClient,
     public auth: AuthService,
-    public lib: LibService
+    public lib: LibService,
+    public toast: ToastController
   ) {}
 
   ngOnInit(): void {
+    this.getPerks();
+  }
+
+  acceptClicked(evt: any, perk: any) {
+    perk.accepted = true;
+    this.http
+      .post('https://mydeas.vercel.app/api/perks/accept', {
+        user: this.auth.user.displayname,
+        perk: perk,
+      })
+      .subscribe(this.afterUserAcceptedPerk(perk));
+  }
+
+  getPerks() {
     this.http
       .get('https://mydeas.vercel.app/api/perks/fetch')
       .subscribe((result: any) => {
@@ -58,34 +74,45 @@ export class TreasuryComponent implements OnInit {
       });
   }
 
-  acceptClicked(evt: any, perk: any) {
-    perk.accepted = true;
-    this.http
-      .post('https://mydeas.vercel.app/api/perks/accept', {
-        user: this.auth.user.displayname,
-        perk: perk,
-      })
-      .subscribe({
-        next: (result: any) => {
-          this.http
-            .post('https://mydeas.vercel.app/api/user/perk', {
-              _id: this.auth.user._id,
-              perk: perk,
-            })
-            .subscribe({
-              next: (result: any) => {
-                this.auth.user.perks[perk._id] = perk;
-                this.auth.user.perks[perk._id].accepted = true;
-              },
-              error: (err: any) => {},
-            });
-        },
-        error: (error: any) => {
-          console.log(error);
-        },
-        complete: () => {},
-      });
-  }
+  afterUserPerkUpdate = (perk: any) => {
+    return {
+      next: async (result: any) => {
+        this.auth.user.perks[perk._id] = perk;
+        this.auth.user.perks[perk._id].accepted = true;
+        let toast = await this.toast.create({
+          message: 'On its way!',
+          duration: 2000,
+        });
+        toast.present();
+      },
+      error: async (err: any) => {
+        let toast = await this.toast.create({
+          message: "Something went wrong, we'll get back to you",
+          duration: 2000,
+        });
+        toast.present();
+      },
+    };
+  };
 
-  slideChanged(event: any) {}
+  afterUserAcceptedPerk = (perk: any) => {
+    return {
+      next: (result: any) => {
+        this.http
+          .post('https://mydeas.vercel.app/api/user/perk', {
+            _id: this.auth.user._id,
+            perk: perk,
+          })
+          .subscribe(this.afterUserPerkUpdate(perk));
+      },
+      error: async (error: any) => {
+        console.log(error);
+        let toast = await this.toast.create({
+          message: "Something went wrong, we'll get back to you",
+          duration: 2000,
+        });
+        toast.present();
+      },
+    };
+  };
 }
