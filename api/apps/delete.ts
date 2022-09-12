@@ -9,7 +9,29 @@ export default cors(async function (req: VercelRequest, res: VercelResponse) {
     let deletedCount = (await db.collection('Apps').deleteOne(query))
       .deletedCount;
 
-    let apps = await db.collection('Apps').find({}).toArray();
+    let appCollection = db.collection('Apps');
+
+    const agg = [
+      {
+        $lookup: {
+          from: 'Users',
+          localField: 'originator',
+          foreignField: '_id',
+          as: 'originator',
+        },
+      },
+      {
+        $lookup: {
+          from: 'Users',
+          localField: 'collaborators',
+          foreignField: '_id',
+          as: 'c',
+        },
+      },
+    ];
+
+    let apps = await appCollection.aggregate(agg).toArray();
+
     res.status(200).send({ deletedCount, apps });
   } catch (exception) {
     res.status(500).send(exception);

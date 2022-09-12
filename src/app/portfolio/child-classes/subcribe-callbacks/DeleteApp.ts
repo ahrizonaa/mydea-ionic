@@ -1,7 +1,9 @@
+import { LibService } from './../../../services/lib.service';
 import { AppAssistant } from '../../../services/AppAssistant';
 import { App } from '../App';
 
 export class DeleteApp {
+  constructor(private lib: LibService) {}
   static success: (this: AppAssistant, app: App, res: any) => void = function (
     this,
     app,
@@ -16,7 +18,8 @@ export class DeleteApp {
         });
         toastr.present();
       })();
-      this.set(res.apps);
+      this.lib._.remove(this.apps, { _id: app._id });
+      //this.set(res.apps);
     } else {
       (async () => {
         let toastr = await this.toast.create({

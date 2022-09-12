@@ -15,7 +15,11 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: white;
+  background: var(
+    --ion-card-background,
+    var(--ion-item-background, var(--ion-background-color, #fff))
+  );
+  // background-color: white;
   z-index: 1103;
   box-sizing: content-box;
   padding-bottom: 70px;
