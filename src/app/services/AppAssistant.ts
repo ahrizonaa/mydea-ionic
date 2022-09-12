@@ -27,7 +27,7 @@ export class AppAssistant {
     public lib: LibService,
     private globals: GlobalsService,
     public toast: ToastController,
-    private auth: AuthService,
+    public auth: AuthService,
     private d: DispatcherService
   ) {
     this.d.appRefresh$.subscribe((val: boolean = false) => {
@@ -122,7 +122,7 @@ export class AppAssistant {
 
   create() {
     this.creating = true;
-    this.stagingApp.originator = this.auth.user;
+    this.stagingApp.originator = this.auth.user._id;
     this.api
       .post('apps/save', { ...this.stagingApp })
       .subscribe(

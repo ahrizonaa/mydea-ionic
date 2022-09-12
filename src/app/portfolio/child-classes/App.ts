@@ -4,11 +4,11 @@ import { UserData } from 'src/app/login/child-classes/User';
 class App {
   constructor(
     name: string = '',
-    originator: UserData = {},
+    originator: string = '',
     features: string[] = []
   ) {
     this.name = name || '';
-    this.originator = originator || {};
+    this.originator = originator || '';
     this.features = features;
     this._id = undefined;
   }
@@ -16,7 +16,7 @@ class App {
   _id?: any;
   name: string = '';
   description: string = '';
-  originator: UserData = {};
+  originator: string = '';
   collaborators: UserData[] = [];
   features: string[] = [];
   timeline: Timeline = new Timeline();

@@ -1,4 +1,5 @@
-<swiper [effect]="'cards'" [grabCursor]="true" class="bg-card-swiper">
+<swiper [initialSlide]="auth.user.settings.bgindex !== undefined ? auth.user.settings.bgindex - 1 : 0"
+  [effect]="'cards'" [grabCursor]="true" class="bg-card-swiper">
   <ng-template swiperSlide *ngFor="let bgIdx of cards; let i = index">
     <div (click)="slideClicked(bgIdx)"
       [style.border]="auth.user.settings.bgindex === bgIdx? '4px solid #3cc3b3 ' : 'none'"
