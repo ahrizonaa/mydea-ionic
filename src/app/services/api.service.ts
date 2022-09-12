@@ -22,18 +22,18 @@ export class ApiService {
   httpBackend: HttpClient;
 
   get(path: string): Observable<any> {
-    return this.http.get(`${this.g.api}/${path}`);
+    return this.http.get(`${this.g.api}/${path}/`);
   }
 
   post(path: string, body: any): Observable<any> {
-    return this.http.post(`${this.g.api}/${path}`, body);
+    return this.http.post(`${this.g.api}/${path}/`, body);
   }
 
   put(path: string, body: any): Observable<any> {
-    return this.http.put(`${this.g.api}/${path}`, body);
+    return this.http.put(`${this.g.api}/${path}/`, body);
   }
 
   delete(path: string, options: any): Observable<any> {
-    return this.http.delete(`${this.g.api}/${path}`, options);
+    return this.http.delete(`${this.g.api}/${path}/`, options);
   }
 }

@@ -1,7 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { cors } from 'api/lib/_cors';
 import { db } from '../lib/_db';
 
-export default async function (req: VercelRequest, res: VercelResponse) {
+export default cors(async function (req: VercelRequest, res: VercelResponse) {
   try {
     let result = await db.collection('Apps').insertOne({
       name: req.body.name,
@@ -13,4 +14,4 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   } catch (exception) {
     res.status(500).send(exception);
   }
-}
+});

@@ -89,7 +89,7 @@ export class AuthService {
   requestcode(): void {
     this.loginstep = Steps.VERIFY_CODE;
     this.api
-      .post('/twilio/coderequest', {
+      .post('twilio/coderequest', {
         tel: this.user.tel,
       })
       .subscribe((res: any) => {

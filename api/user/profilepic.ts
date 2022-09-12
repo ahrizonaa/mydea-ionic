@@ -1,5 +1,6 @@
 import { imagekitclient } from '../lib/_imagekit';
 import { v4 as uuidv4 } from 'uuid';
+import { cors } from '../lib/_cors';
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import {
@@ -9,7 +10,7 @@ import {
   UrlOptions,
 } from 'imagekit/dist/libs/interfaces';
 
-export default async function (req: VercelRequest, res: VercelResponse) {
+const handler = async function (req: VercelRequest, res: VercelResponse) {
   var uploadOptions: UploadOptions = {
     file: req.body.base64String,
     fileName: `${uuidv4()}.png`,
@@ -35,4 +36,6 @@ export default async function (req: VercelRequest, res: VercelResponse) {
       msg: exception.message,
     });
   }
-}
+};
+
+export default cors(handler);
