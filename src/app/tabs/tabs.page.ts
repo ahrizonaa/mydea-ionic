@@ -13,7 +13,7 @@ export class TabsPage implements OnInit, AfterViewInit {
   @ViewChild('ionTabs') ionTabs: IonTabs;
 
   tabsactive: boolean[] = [true, false, false];
-  backgroundImage = 'url(../assets/images/backgrounds/bg-0.jpg';
+  backgroundImage = 'url(../assets/images/backgrounds/bg-0.jpg)';
   constructor(public auth: AuthService, public globals: GlobalsService) {}
 
   ngOnInit(): void {
