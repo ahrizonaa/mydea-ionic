@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { cors } from 'api/lib/_cors';
+import { cors } from '../../lib/_cors';
 import { ObjectId } from 'mongodb';
 import { db } from '../../lib/_db';
 
