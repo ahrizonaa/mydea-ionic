@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { cors } from 'api/lib/_cors';
+import { cors } from '../lib/_cors';
 import { twilioclient } from '../lib/_twilio';
 
 export default cors(async function (req: VercelRequest, res: VercelResponse) {
