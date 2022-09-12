@@ -1,8 +1,6 @@
-<swiper #swiper [effect]="'creative'" [grabCursor]="true" [creativeEffect]="creativeEffect" [speed]="600"
-  [resistanceRatio]="0" [parallax]="true">
-  <ng-template swiperSlide *ngFor="let bgIdx of cards">
-    <div data-swiper-parallax-scale="1.1" [style.backgroundImage]="formatBgImgCss(bgIdx)" class="swiper-slide">
-
-    </div>
+<swiper [effect]="'cards'" [grabCursor]="true" class="bg-card-swiper">
+  <ng-template swiperSlide *ngFor="let bgIdx of cards; let i = index">
+    <div [style.border]="auth.user.settings.bgindex === bgIdx + 1 ? '4px solid #3cc3b3 ' : 'none'"
+      [style.backgroundImage]="formatBgImgCss(bgIdx)" class="swiper-slide"></div>
   </ng-template>
 </swiper>
