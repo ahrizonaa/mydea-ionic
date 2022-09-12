@@ -1,12 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { cors } from '../lib/_cors';
 import { db } from '../lib/_db';
 
 const handler = async function (req: VercelRequest, res: VercelResponse) {
-  res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
   try {
     let search = await db.collection('Users').findOne({ tel: req.body.tel });
     res.status(200).send(search);
@@ -22,4 +18,4 @@ const handler = async function (req: VercelRequest, res: VercelResponse) {
   }
 };
 
-export default handler;
+export default cors(handler);

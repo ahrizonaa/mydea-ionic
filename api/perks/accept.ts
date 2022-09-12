@@ -1,7 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { cors } from 'api/lib/_cors';
 import { twilioclient } from '../lib/_twilio';
 
-export default async function (req: VercelRequest, res: VercelResponse) {
+export default cors(async function (req: VercelRequest, res: VercelResponse) {
   try {
     await twilioclient.messages
       .create({
@@ -15,4 +16,4 @@ export default async function (req: VercelRequest, res: VercelResponse) {
   } catch (exception: any) {
     res.status(500).send(exception.message);
   }
-}
+});
