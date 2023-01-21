@@ -59,7 +59,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   saveProfilePic(image: Photo) {
     console.log(image);
     this.api
-      .post('user/profilepic', { base64String: image.base64String })
+      .post('user', { base64String: image.base64String, action: 'profilepic' })
       .subscribe((res: any) => {
         console.log(res);
         this.auth.user.settings.pfp = res.imgHostingUrl;

@@ -6,6 +6,7 @@ export class User {
     this.displayname = u.displayname || '';
     this.settings = u.settings || {};
     this.perks = u.perks || {};
+    this.action = '';
   }
   public _id: string | undefined = '';
   public displayname: string = '';
@@ -15,6 +16,7 @@ export class User {
   public settings: any;
   public auth_date_diff: number;
   public perks: any;
+  public action: string;
 }
 
 export interface UserData {
@@ -24,4 +26,5 @@ export interface UserData {
   validatedon?: Moment;
   settings?: any;
   perks?: any;
+  action?: string;
 }

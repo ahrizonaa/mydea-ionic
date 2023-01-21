@@ -99,9 +99,10 @@ export class TreasuryComponent implements OnInit {
     return {
       next: (result: any) => {
         this.http
-          .post('https://mydeas.vercel.app/api/user/perk', {
+          .post('https://mydeas.vercel.app/api/user', {
             _id: this.auth.user._id,
             perk: perk,
+            action: 'perk',
           })
           .subscribe(this.afterUserPerkUpdate(perk));
       },

@@ -34,9 +34,10 @@ export class AuthService {
   ) {}
 
   saveDisplayName(): Observable<any> {
-    return this.api.put('user/displayname', {
+    return this.api.put('user', {
       _id: this.user._id,
       displayname: this.user.displayname,
+      action: 'displayname',
     });
   }
 
@@ -48,10 +49,9 @@ export class AuthService {
       this.loginstep = Steps.INPUT_TEL;
       console.debug('INPUT_TEL');
     } else {
-      const u = JSON.parse(usr) as User;
-      const userdata: UserData = await firstValueFrom(
-        this.api.post('user/fetch', u)
-      );
+      let u = JSON.parse(usr) as User;
+      u.action = 'fetch';
+      const userdata: UserData = await firstValueFrom(this.api.post('user', u));
       this.setUser(userdata);
       if (
         this.user.authenticated ||
@@ -83,7 +83,8 @@ export class AuthService {
   }
 
   fetchUser(u: User): Observable<any> {
-    return this.api.post('user/fetch', u);
+    u.action = 'fetch';
+    return this.api.post('user', u);
   }
 
   requestcode(): void {
@@ -115,9 +116,10 @@ export class AuthService {
             if (this.msg.code == this.code) {
               this.user.validatedon = this.lib.moment();
               this.api
-                .post('user/validate', {
+                .post('user', {
                   _id: this.user._id,
                   validatedon: this.user.validatedon,
+                  action: 'validate',
                 })
                 .subscribe();
               this.codeprogress.color = 'success';
@@ -157,8 +159,9 @@ export class AuthService {
 
   accountexists(): void {
     this.api
-      .post('user/exists', {
+      .post('user', {
         tel: this.user.tel,
+        action: 'exists',
       })
       .subscribe(async (res: any) => {
         this.accountRequestLoading = false;
@@ -183,8 +186,9 @@ export class AuthService {
       tel: this.user.tel,
       displayname: this.user.displayname,
       validatedon: this.lib.moment(),
+      action: 'create',
     });
-    this.api.post('user/create', usr).subscribe((res) => {
+    this.api.post('user', usr).subscribe((res) => {
       if (res.acknowledged == true) {
         usr._id = res.insertedId;
         this.setUser(usr);
