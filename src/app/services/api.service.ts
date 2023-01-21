@@ -26,14 +26,14 @@ export class ApiService {
   }
 
   post(path: string, body: any): Observable<any> {
-    return this.http.post(`${this.g.api}/${path}`, body);
+    return this.http.post(`${this.g.api}/${path}/`, body);
   }
 
   put(path: string, body: any): Observable<any> {
-    return this.http.put(`${this.g.api}/${path}`, body);
+    return this.http.put(`${this.g.api}/${path}/`, body);
   }
 
   delete(path: string, options: any): Observable<any> {
-    return this.http.delete(`${this.g.api}/${path}`, options);
+    return this.http.delete(`${this.g.api}/${path}/`, options);
   }
 }
