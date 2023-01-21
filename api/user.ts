@@ -44,6 +44,7 @@ export default cors(async function (req: VercelRequest, res: VercelResponse) {
       let search = await db.collection('Users').findOne({ tel: req.body.tel });
       res.status(200).send(search);
     } catch (exception) {
+      console.log(exception);
       res.status(500).send({
         msg: 'Error searching for user',
         exception: {
