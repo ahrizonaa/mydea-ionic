@@ -48,16 +48,17 @@ export class TreasuryComponent implements OnInit {
   acceptClicked(evt: any, perk: any) {
     perk.accepted = true;
     this.http
-      .post('https://mydeas.vercel.app/api/perks/accept', {
+      .post('https://mydeas.vercel.app/api/perk', {
         user: this.auth.user.displayname,
         perk: perk,
+        action: 'accept',
       })
       .subscribe(this.afterUserAcceptedPerk(perk));
   }
 
   getPerks() {
     this.http
-      .get('https://mydeas.vercel.app/api/perks/fetch')
+      .post('https://mydeas.vercel.app/api/perk', { action: 'fetch' })
       .subscribe((result: any) => {
         this.perks = result.map((perk: any) => {
           if (this.auth.user.perks) {
