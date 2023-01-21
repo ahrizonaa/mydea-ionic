@@ -40,6 +40,7 @@ export default cors(async function (req: VercelRequest, res: VercelResponse) {
       res.status(200).send(`${req.method} not implemented.`);
     }
   } else if (req.body.action == 'exists') {
+    res.status(200).send('hello world');
     try {
       let search = await db.collection('Users').findOne({ tel: req.body.tel });
       res.status(200).send(search);
