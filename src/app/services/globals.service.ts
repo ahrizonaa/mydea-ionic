@@ -31,5 +31,8 @@ export class GlobalsService {
 
   iframe: boolean;
 
-  readonly api = ` https://mydeas.vercel.app/api`;
+  readonly api =
+    window.location.href == 'localhost'
+      ? 'http://localhost:8080'
+      : 'https://mydeas.vercel.app/api';
 }
