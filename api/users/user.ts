@@ -14,8 +14,6 @@ import { v4 as uuidv4 } from 'uuid';
 export default cors(async function (req: VercelRequest, res: VercelResponse) {
   if (req.method === 'OPTIONS') {
     return res.status(200).json({ body: 'OK' });
-  } else {
-    return res.status(200).json({ msg: 'success' });
   }
   if (req.body.action == 'create') {
     try {
