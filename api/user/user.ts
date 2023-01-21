@@ -12,6 +12,9 @@ import { imagekitclient } from '../lib/_imagekit';
 import { v4 as uuidv4 } from 'uuid';
 
 export default cors(async function (req: VercelRequest, res: VercelResponse) {
+  if (req.method === 'OPTIONS') {
+    return res.status(200).json({ body: 'OK' });
+  }
   if (req.body.action == 'create') {
     try {
       let result = await db.collection('Users').insertOne({
@@ -40,7 +43,6 @@ export default cors(async function (req: VercelRequest, res: VercelResponse) {
       res.status(200).send(`${req.method} not implemented.`);
     }
   } else if (req.body.action == 'exists') {
-    res.status(200).send('hello world');
     try {
       let search = await db.collection('Users').findOne({ tel: req.body.tel });
       res.status(200).send(search);
