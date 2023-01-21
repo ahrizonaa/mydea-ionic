@@ -51,7 +51,9 @@ export class AuthService {
     } else {
       let u = JSON.parse(usr) as User;
       u.action = 'fetch';
-      const userdata: UserData = await firstValueFrom(this.api.post('user', u));
+      const userdata: UserData = await firstValueFrom(
+        this.api.post('users/user', u)
+      );
       this.setUser(userdata);
       if (
         this.user.authenticated ||
@@ -84,7 +86,7 @@ export class AuthService {
 
   fetchUser(u: User): Observable<any> {
     u.action = 'fetch';
-    return this.api.post('user', u);
+    return this.api.post('users/user', u);
   }
 
   requestcode(): void {
@@ -116,7 +118,7 @@ export class AuthService {
             if (this.msg.code == this.code) {
               this.user.validatedon = this.lib.moment();
               this.api
-                .post('user', {
+                .post('users/user', {
                   _id: this.user._id,
                   validatedon: this.user.validatedon,
                   action: 'validate',
@@ -159,7 +161,7 @@ export class AuthService {
 
   accountexists(): void {
     this.api
-      .post('user', {
+      .post('users/user', {
         tel: this.user.tel,
         action: 'exists',
       })
@@ -188,7 +190,7 @@ export class AuthService {
       validatedon: this.lib.moment(),
       action: 'create',
     });
-    this.api.post('user', usr).subscribe((res) => {
+    this.api.post('users/user', usr).subscribe((res) => {
       if (res.acknowledged == true) {
         usr._id = res.insertedId;
         this.setUser(usr);

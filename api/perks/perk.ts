@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { cors } from './lib/_cors';
-import { db } from './lib/_db';
-import { twilioclient } from './lib/_twilio';
+import { cors } from '../lib/_cors';
+import { db } from '../lib/_db';
+import { twilioclient } from '../lib/_twilio';
 
 export default cors(async function (req: VercelRequest, res: VercelResponse) {
   if (req.body.action == 'fetch') {

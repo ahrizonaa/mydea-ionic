@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { cors } from './lib/_cors';
-import { db } from './lib/_db';
+import { cors } from '../lib/_cors';
+import { db } from '../lib/_db';
 import { ObjectId } from 'mongodb';
 import {
   IKCallback,
@@ -8,7 +8,7 @@ import {
   UploadResponse,
   UrlOptions,
 } from 'imagekit/dist/libs/interfaces';
-import { imagekitclient } from './lib/_imagekit';
+import { imagekitclient } from '../lib/_imagekit';
 import { v4 as uuidv4 } from 'uuid';
 
 export default cors(async function (req: VercelRequest, res: VercelResponse) {
