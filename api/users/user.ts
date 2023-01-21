@@ -12,9 +12,6 @@ import { imagekitclient } from '../lib/_imagekit';
 import { v4 as uuidv4 } from 'uuid';
 
 export default cors(async function (req: VercelRequest, res: VercelResponse) {
-  if (req.method === 'OPTIONS') {
-    return res.status(200).json({ body: 'OK' });
-  }
   if (req.body.action == 'create') {
     try {
       let result = await db.collection('Users').insertOne({
