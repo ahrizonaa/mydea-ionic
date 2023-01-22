@@ -35,5 +35,5 @@ export class GlobalsService {
   readonly api =
     window.location.href.indexOf('localhost') != -1
       ? 'http://localhost:8080'
-      : 'https://mydeas.vercel.app/api';
+      : 'https://charmee-webservices-7sgqd.ondigitalocean.app';
 }
