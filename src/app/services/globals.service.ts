@@ -13,7 +13,6 @@ export class GlobalsService {
     @Inject(DOCUMENT) private document: Document,
     public platform: Platform
   ) {
-    console.log(this.api);
     this.iframe = (() => {
       try {
         if (window.self !== window.top) {

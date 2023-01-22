@@ -166,7 +166,6 @@ export class AuthService {
           // account doesnt exist
           this.requestcode();
         } else {
-          console.log(res);
           this.setUser(res);
           if (this.user.authenticated) {
             this.loginstep = Steps.GREETING;
