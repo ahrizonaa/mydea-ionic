@@ -13,6 +13,7 @@ export class GlobalsService {
     @Inject(DOCUMENT) private document: Document,
     public platform: Platform
   ) {
+    console.log(this.api);
     this.iframe = (() => {
       try {
         if (window.self !== window.top) {
@@ -32,7 +33,7 @@ export class GlobalsService {
   iframe: boolean;
 
   readonly api =
-    window.location.href == 'localhost'
+    window.location.href.indexOf('localhost') != -1
       ? 'http://localhost:8080'
       : 'https://mydeas.vercel.app/api';
 }

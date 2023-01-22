@@ -14,6 +14,7 @@ import SwiperCore, {
   EffectCreative,
 } from 'swiper';
 import { LibService } from '../services/lib.service';
+import { ApiService } from '../services/api.service';
 
 SwiperCore.use([
   Autoplay,
@@ -38,7 +39,8 @@ export class TreasuryComponent implements OnInit {
     private http: HttpClient,
     public auth: AuthService,
     public lib: LibService,
-    public toast: ToastController
+    public toast: ToastController,
+    private api: ApiService
   ) {}
 
   ngOnInit(): void {
@@ -47,32 +49,29 @@ export class TreasuryComponent implements OnInit {
 
   acceptClicked(evt: any, perk: any) {
     perk.accepted = true;
-    this.http
-      .post('https://mydeas.vercel.app/api/perks/perk', {
+    this.api
+      .post('perks/accept', {
         user: this.auth.user.displayname,
         perk: perk,
-        action: 'accept',
       })
       .subscribe(this.afterUserAcceptedPerk(perk));
   }
 
   getPerks() {
-    this.http
-      .post('https://mydeas.vercel.app/api/perks/perk', { action: 'fetch' })
-      .subscribe((result: any) => {
-        this.perks = result.map((perk: any) => {
-          if (this.auth.user.perks) {
-            let userperk = this.auth.user.perks[perk._id];
-            if (userperk != undefined) {
-              perk.accepted = userperk.accepted;
-              perk.fullfilled = userperk.fullfilled;
-            }
+    this.api.get('perks/fetch').subscribe((result: any) => {
+      this.perks = result.map((perk: any) => {
+        if (this.auth.user.perks) {
+          let userperk = this.auth.user.perks[perk._id];
+          if (userperk != undefined) {
+            perk.accepted = userperk.accepted;
+            perk.fullfilled = userperk.fullfilled;
           }
+        }
 
-          perk.img = `../../assets/images/perks/${perk.img}`;
-          return perk;
-        });
+        perk.img = `../../assets/images/perks/${perk.img}`;
+        return perk;
       });
+    });
   }
 
   afterUserPerkUpdate = (perk: any) => {
@@ -99,11 +98,10 @@ export class TreasuryComponent implements OnInit {
   afterUserAcceptedPerk = (perk: any) => {
     return {
       next: (result: any) => {
-        this.http
-          .post('https://mydeas.vercel.app/api/users/user', {
+        this.api
+          .post('users/perk', {
             _id: this.auth.user._id,
             perk: perk,
-            action: 'perk',
           })
           .subscribe(this.afterUserPerkUpdate(perk));
       },

@@ -19,13 +19,13 @@ export class CreateappModalComponent implements OnInit {
   constructor(public apps: AppAssistant) {}
 
   ngOnInit(): void {
-    this.bgImage = `url(../../../../assets/images/bg-${Math.floor(
-      Math.random() * 35
+    this.bgImage = `url(../../../../assets/images/backgrounds/bg-${Math.floor(
+      Math.random() * 18
     )}.jpg)`;
 
     setInterval(() => {
-      const idx = Math.floor(Math.random() * 35);
-      this.bgImage = `url(../../../../assets/images/bg-${idx}.jpg)`;
+      const idx = Math.floor(Math.random() * 18);
+      this.bgImage = `url(../../../../assets/images/backgrounds/bg-${idx}.jpg)`;
     }, 5000);
   }
 

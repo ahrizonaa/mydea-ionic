@@ -18,7 +18,11 @@ export class DeleteApp {
         });
         toastr.present();
       })();
+      console.log(this, app);
       this.lib._.remove(this.apps, { _id: app._id });
+      this.refresh(false);
+      this.deleting = false;
+      this.loading = false;
       //this.set(res.apps);
     } else {
       (async () => {

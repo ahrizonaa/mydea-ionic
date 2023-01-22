@@ -34,10 +34,9 @@ export class AuthService {
   ) {}
 
   saveDisplayName(): Observable<any> {
-    return this.api.put('user', {
+    return this.api.put('users/displayname', {
       _id: this.user._id,
       displayname: this.user.displayname,
-      action: 'displayname',
     });
   }
 
@@ -50,9 +49,8 @@ export class AuthService {
       console.debug('INPUT_TEL');
     } else {
       let u = JSON.parse(usr) as User;
-      u.action = 'fetch';
       const userdata: UserData = await firstValueFrom(
-        this.api.post('users/user', u)
+        this.api.post('users/fetch', u)
       );
       this.setUser(userdata);
       if (
@@ -85,8 +83,7 @@ export class AuthService {
   }
 
   fetchUser(u: User): Observable<any> {
-    u.action = 'fetch';
-    return this.api.post('users/user', u);
+    return this.api.post('users/fetch', u);
   }
 
   requestcode(): void {
@@ -118,10 +115,9 @@ export class AuthService {
             if (this.msg.code == this.code) {
               this.user.validatedon = this.lib.moment();
               this.api
-                .post('users/user', {
+                .post('users/validate', {
                   _id: this.user._id,
                   validatedon: this.user.validatedon,
-                  action: 'validate',
                 })
                 .subscribe();
               this.codeprogress.color = 'success';
@@ -161,9 +157,8 @@ export class AuthService {
 
   accountexists(): void {
     this.api
-      .post('users/user', {
+      .post('users/exists', {
         tel: this.user.tel,
-        action: 'exists',
       })
       .subscribe(async (res: any) => {
         this.accountRequestLoading = false;
@@ -188,9 +183,8 @@ export class AuthService {
       tel: this.user.tel,
       displayname: this.user.displayname,
       validatedon: this.lib.moment(),
-      action: 'create',
     });
-    this.api.post('users/user', usr).subscribe((res) => {
+    this.api.post('users/create', usr).subscribe((res) => {
       if (res.acknowledged == true) {
         usr._id = res.insertedId;
         this.setUser(usr);

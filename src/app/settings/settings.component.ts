@@ -37,7 +37,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   @ViewChild('ionNav', { read: IonNav }) ionNav: IonNav;
   @ViewChild('profileCard', { read: ElementRef }) profileCard: ElementRef;
   bgs: number[] = Array.from(new Array(16).keys()).map((n) => n + 1);
-  bgImage = 'url(../../assets/images/bg-1.jpg)';
+  bgImage = 'url(../../assets/images/backgrounds/bg-1.jpg)';
   pfp = 'url(../../assets/svg/avatar.svg)';
   profileImgEdit: HTMLElement;
   profileRoot: any;

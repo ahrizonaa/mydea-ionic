@@ -169,3 +169,7 @@ app-treasury .swiper-slide ion-card {
 ion-card {
   background-color: rgba(28, 28, 19, 0.5) !important;
 }
+
+.swiper-3d .swiper-slide-shadow {
+  display: none;
+}
