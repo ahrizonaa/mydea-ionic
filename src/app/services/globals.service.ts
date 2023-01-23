@@ -25,14 +25,17 @@ export class GlobalsService {
         return true;
       }
     })();
+
+    this.api =
+      window.location.href.indexOf('localhost') != -1 &&
+      !this.platform.is('capacitor')
+        ? 'http://localhost:8080'
+        : 'https://charmee-webservices-7sgqd.ondigitalocean.app';
   }
 
   backgroundImage$: BehaviorSubject<string> = new BehaviorSubject('');
 
   iframe: boolean;
 
-  readonly api =
-    window.location.href.indexOf('localhost') != -1
-      ? 'http://localhost:8080'
-      : 'https://charmee-webservices-7sgqd.ondigitalocean.app';
+  readonly api: string;
 }
