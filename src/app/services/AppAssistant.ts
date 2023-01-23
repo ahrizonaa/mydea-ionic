@@ -169,7 +169,7 @@ export class AppAssistant {
       })();
     } else {
       this.api
-        .put('apps/features/save', {
+        .post('apps/features/save', {
           _id: this.selected._id,
           feature: this.stagingFeature,
         })

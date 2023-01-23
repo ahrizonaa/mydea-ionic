@@ -34,7 +34,7 @@ export class AuthService {
   ) {}
 
   saveDisplayName(): Observable<any> {
-    return this.api.put('users/displayname', {
+    return this.api.post('users/displayname', {
       _id: this.user._id,
       displayname: this.user.displayname,
     });
