@@ -38,17 +38,14 @@
       <ion-button size="small" fill="clear">
         <ion-icon
           style="color: #ed576b"
-          [style.backgroundColor]="static ? 'transparent' : 'white'"
           *ngIf="!event.inProgress && !event.isDone"
           [style.animation]="getAnimation(i)"
           [name]="static ? 'heart' : 'heart-outline'"></ion-icon>
         <ion-spinner
-          style="background: white"
           *ngIf="event.inProgress"
-          style="width: 20px; height: 20px"
+          style="width: 20px; height: 20px; background: transparent;"
           name="crescent"></ion-spinner>
         <ion-icon
-          style="background: white"
           *ngIf="event.isDone"
           name="heart"></ion-icon>
       </ion-button>

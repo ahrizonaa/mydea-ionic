@@ -63,7 +63,7 @@ export class AppAssistant {
       //   .subscribe(RefreshApps.success.bind(this, useRefresher));
 
       this.loading = true;
-      this.api.get('apps/fetch').subscribe((res: any) => {
+      this.api.post('apps/fetch', { userid: this.auth.user._id }).subscribe((res: any) => {
         this.refresher.nativeElement.complete();
         this.set(res);
       });

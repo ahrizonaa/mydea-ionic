@@ -20,6 +20,7 @@ export class CreateApp {
         toastr.present();
       })();
       this.refresh();
+      this.creating = false
       this.views.newapp = false;
     } else {
       (async () => {
@@ -29,6 +30,8 @@ export class CreateApp {
         });
         toastr.present();
       })();
+      this.creating = false
+      this.views.newapp = false;
     }
   };
 }
