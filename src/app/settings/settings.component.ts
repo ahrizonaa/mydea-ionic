@@ -59,9 +59,9 @@ export class SettingsComponent implements OnInit, AfterViewInit {
     this.profileRoot = ProfileComponent;
     this.profileEdit = ProfileEditComponent;
   }
-  // ngAfterViewInit(): void {
-  //   this.profileImg.el.shadowRoot.appendChild(this.profileImgEdit);
-  // }
+  ngAfterViewInit(): void {
+    this.profileImg.el.shadowRoot.appendChild(this.profileImgEdit);
+  }
   // ngOnInit(): void {
   //   this.d.user$.subscribe((user: UserData) => {
   //     if (user.settings !== undefined && user.settings.pfp) {
@@ -70,16 +70,16 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   //   });
   // }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      let el = document.querySelector(
-        'app-profile > div'
-      ) as HTMLElement | null;
-      let height = el == null ? 'auto' : `${el.offsetHeight}px`;
-      this.profileCardMaxHeight = '100vh';
-      this.profileCardHeight = height;
-    }, 200);
-  }
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     let el = document.querySelector(
+  //       'app-profile > div'
+  //     ) as HTMLElement | null;
+  //     let height = el == null ? 'auto' : `${el.offsetHeight}px`;
+  //     this.profileCardMaxHeight = '100vh';
+  //     this.profileCardHeight = height;
+  //   }, 200);
+  // }
 
   ngOnInit(): void {
     this.d.profileNav$.subscribe((nav: string) => {
@@ -87,6 +87,12 @@ export class SettingsComponent implements OnInit, AfterViewInit {
         this.ionNav.push(this.profileEdit);
       } else if (nav == 'Back') {
         this.ionNav.pop();
+      }
+    });
+
+    this.d.user$.subscribe((user: UserData) => {
+      if (user.settings !== undefined && user.settings.pfp) {
+        this.pfp = user.settings.pfp;
       }
     });
   }
