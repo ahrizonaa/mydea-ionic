@@ -49,3 +49,6 @@ src/assets/fa-pro-5.13/*
 !src/assets/fa-pro-5.13/css
 !src/assets/fa-pro-5.13/webfonts
 .vercel
+
+# ionic native xcode web assets
+/www

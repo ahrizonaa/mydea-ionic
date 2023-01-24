@@ -121,15 +121,20 @@ export class SettingsComponent implements OnInit, AfterViewInit {
   }
 
   saveProfilePic(image: Photo) {
-    this.auth.user.settings.pfp = image.dataUrl;
-    this.pfp = image.dataUrl || '';
-
     this.api
-      .post('settings/save', {
-        user: this.auth.user,
-        settings: { pfp: image.dataUrl },
+      .post('users/profilepic', {
+        base64String: image.base64String,
       })
-      .subscribe();
+      .subscribe((res: any) => {
+        this.auth.user.settings.pfp = res.imgHostingUrl;
+        this.pfp = res.imgHostingUrl || '';
+        this.api
+          .post('settings/save', {
+            user: this.auth.user,
+            settings: { pfp: res.imgHostingUrl },
+          })
+          .subscribe();
+      });
   }
 
   renderProfileImgEditBtn() {

@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "mydea",
+	"appId": "com.charmee.mydeas",
+	"appName": "Mydeas",
 	"webDir": "www",
 	"bundledWebRuntime": false,
 	"server": {

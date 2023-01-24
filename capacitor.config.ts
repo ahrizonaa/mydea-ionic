@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'mydea',
+  appId: 'com.charmee.mydeas',
+  appName: 'Mydeas',
   webDir: 'www',
   bundledWebRuntime: false
 };
