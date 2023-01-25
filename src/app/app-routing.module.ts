@@ -14,10 +14,10 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       { path: 'portfolio', component: PortfolioComponent },
-      {
-        path: 'treasury',
-        component: TreasuryComponent,
-      },
+      // {
+      //   path: 'treasury',
+      //   component: TreasuryComponent,
+      // },
       {
         path: 'settings',
         component: SettingsComponent,

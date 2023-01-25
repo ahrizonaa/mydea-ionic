@@ -25,7 +25,7 @@ export class CreateApp {
     } else {
       (async () => {
         let toastr = await this.toast.create({
-          message: "Something went wrong. We'll take theblame",
+          message: "Something went wrong. We'll take the blame",
           duration: 2000,
         });
         toastr.present();

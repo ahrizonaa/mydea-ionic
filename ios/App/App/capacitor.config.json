@@ -2,5 +2,8 @@
 	"appId": "com.charmee.mydeas",
 	"appName": "Mydeas",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"server": {
+		"url": "http://192.168.1.149:8100"
+	}
 }
